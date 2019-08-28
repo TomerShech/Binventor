@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>QPastes</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/default.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="current_line_number" class="no_select">
+        <span>></span>
+      </div>
+      <textarea
+      id="ta"
+      spellcheck="false"
+      placeholder="Your beautiful code here..."
+      autofocus
+      onkeydown="insertTab(this, event);"
+      ></textarea>
+      <pre><code class="hljs"></code></pre>
+    </div>
+
+    <script src="./js/highlight.pack.js" type="module"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #212121;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: inline-block; /* allows to set width and height to element */
+  height: calc(100% - 10px);
+  width: inherit; /* inherits width from parent element (html in this case) */
+}
+
+#wrap {
+  height: calc(100% - 32px);
+  width: 100%;
+  margin-top: 1rem;
+  white-space: nowrap;
+}
+
+#current_line_number {
+  height: auto;
+  min-width: 25px;
+  width: auto;
+  float: left;
+  font-size: 14px;
+  font-family: Consolas, monospace;
+  text-align: right;
+  color: #979797;
+  margin-left: 10px;
+}
+
+#ta,
+#content-non-editable {
+  color: white;
+  font-size: 14px;
+  font-family: Consolas, monospace;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  resize: none;
+  width: calc(100% - 4rem);
+  height: calc(100% - 1rem);
+  clear: left;
+  padding: 10px;
+  padding-top: 0;
+  margin-left: 1rem;
+  -moz-tab-size: 4;
+  -o-tab-size: 4 !important;
+  tab-size: 4 !important;
+  scroll-behavior: smooth;
+}
+
+#content-non-editable {
+  margin-left: 10px;
+  padding-right: 10px;
+  clear: none;
+  display: inline-block;
+  padding-top: 0;
+  padding-bottom: 10px;
+  min-height: calc(100% - 5px) !important;
+  height: auto;
+  min-width: calc(100% - 70px) !important;
+  width: auto;
+}
+
+pre {
+  height: calc(100% - 10px);
+  white-space: nowrap;
+}
+
+/* sets the text selection color */
+::selection {
+  background-color: rgba(0, 255, 255, 0.6);
+}
+
+/* the user can't select the text */
+.no_select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.no_select:hover {
+  cursor: default;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  background: rgba(0, 255, 255, 0.8);
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 255, 255, 0.4);
+}
