@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title>QPastes</title>
     <link rel="stylesheet" href="./css/normalize.css" />
-    <link rel="stylesheet" href="./css/default.css" />
+    <link rel="stylesheet" href="./css/paraiso-dark.min.css" />
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
@@ -14,16 +14,20 @@
         <span>></span>
       </div>
       <textarea
-      id="ta"
-      spellcheck="false"
-      placeholder="Your beautiful code here..."
-      autofocus
-      onkeydown="insertTab(this, event);"
+        id="ta"
+        spellcheck="false"
+        placeholder="Your beautiful code here..."
+        autofocus
+        onkeydown="insertTab(this, event);"
       ></textarea>
-      <pre><code class="hljs"></code></pre>
     </div>
 
-    <script src="./js/highlight.pack.js" type="module"></script>
+    <pre><code>print('test')</code></pre>
+
+    <script src="./js/highlight.pack.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="./js/index.js"></script>
   </body>

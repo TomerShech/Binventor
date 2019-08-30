@@ -1,3 +1,7 @@
+:root {
+  font-size: 16px;
+}
+
 * {
   padding: 0px;
   margin: 0px;
@@ -18,12 +22,12 @@ html {
 
 body {
   display: inline-block; /* allows to set width and height to element */
-  height: calc(100% - 10px);
+  height: calc(100% - 1rem);
   width: inherit; /* inherits width from parent element (html in this case) */
 }
 
 #wrap {
-  height: calc(100% - 32px);
+  height: calc(100% - 2rem);
   width: 100%;
   margin-top: 1rem;
   white-space: nowrap;
@@ -34,7 +38,7 @@ body {
   min-width: 25px;
   width: auto;
   float: left;
-  font-size: 14px;
+  font-size: 1rem;
   font-family: Consolas, monospace;
   text-align: right;
   color: #979797;
@@ -44,7 +48,7 @@ body {
 #ta,
 #content-non-editable {
   color: white;
-  font-size: 14px;
+  font-size: 1rem;
   font-family: Consolas, monospace;
   background-color: inherit;
   border: none;
@@ -101,9 +105,6 @@ pre {
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 0.8rem;
-}
-
-::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
 }
 

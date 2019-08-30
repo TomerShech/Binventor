@@ -1,12 +1,4 @@
-import hljs from "./highlight.pack.js";
-
 let ta = document.getElementById("ta");
-
-document.addEventListener("DOMContentLoaded", event => {
-  document.querySelectorAll("pre code").forEach(block => {
-    hljs.highlightBlock(block);
-  });
-});
 
 function insertTab(o, e) {
   let kC = e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which;
@@ -41,11 +33,11 @@ document.addEventListener(
       e.preventDefault();
 
       if (ta.value) {
-        let code = document.getElementsByTagName("code");
-        let code_node = document.createTextNode(ta.value);
-        ta.remove();
-        code[0].appendChild(code_node);
-        hljs.highlightAuto(code[0].value);
+        swal(
+          "idk what to do yet",
+          "I'll figure it out eventually...",
+          "warning"
+        );
       } else {
         swal(
           "Seems like no code was pasted",
