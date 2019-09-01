@@ -45,8 +45,7 @@ body {
   margin-left: 10px;
 }
 
-#ta,
-#content-non-editable {
+#ta {
   color: white;
   font-size: 1rem;
   font-family: Consolas, monospace;
@@ -66,40 +65,22 @@ body {
   scroll-behavior: smooth;
 }
 
-#content-non-editable {
-  margin-left: 10px;
-  padding-right: 10px;
-  clear: none;
-  display: inline-block;
-  padding-top: 0;
-  padding-bottom: 10px;
-  min-height: calc(100% - 5px) !important;
-  height: auto;
-  min-width: calc(100% - 70px) !important;
-  width: auto;
-}
-
 pre {
   height: calc(100% - 10px);
   white-space: nowrap;
 }
 
+code {
+  white-space: pre-wrap;
+  overflow: auto;
+  padding-left: 1.5rem;
+}
+
 /* sets the text selection color */
-::selection {
+::selection,
+::-moz-selection {
   background-color: rgba(0, 255, 255, 0.6);
-}
-
-/* the user can't select the text */
-.no_select {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none;
-}
-
-.no_select:hover {
-  cursor: default;
+  color: white;
 }
 
 /* Custom scrollbar */

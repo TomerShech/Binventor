@@ -1,4 +1,5 @@
 let ta = document.getElementById("ta");
+let code = document.querySelector("code");
 
 function insertTab(o, e) {
   let kC = e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which;
@@ -28,16 +29,16 @@ document.addEventListener(
   function(e) {
     if (
       (window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey) &&
-      e.keyCode == 83 // S
+      e.keyCode == 83 // S key
     ) {
       e.preventDefault();
 
       if (ta.value) {
-        swal(
-          "idk what to do yet",
-          "I'll figure it out eventually...",
-          "warning"
-        );
+        let temp = ta.value;
+        let wrap = document.getElementById("wrap");
+        wrap.parentNode.removeChild(wrap);
+        code.textContent = temp;
+        hljs.highlightBlock(code);
       } else {
         swal(
           "Seems like no code was pasted",
