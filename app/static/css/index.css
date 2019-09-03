@@ -1,0 +1,219 @@
+:root {
+  font-size: 16px;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #212121;
+  height: 100%;
+  width: 100%;
+  overflow: visible;
+}
+
+body {
+  display: inline-block; /* allows to set width and height to element */
+  height: calc(100% - 1rem);
+  width: inherit; /* inherits width from parent element (html in this case) */
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 1fr;
+  grid-template-areas: "navbar" "_content";
+}
+
+.navbar {
+  grid-area: navbar;
+}
+
+._content {
+  grid-area: _content;
+}
+
+#ta {
+  color: white;
+  font-size: 1rem;
+  font-family: monospace;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  resize: none;
+  width: calc(100% - 4rem);
+  height: calc(100% - 1rem);
+  clear: left;
+  padding: 10px;
+  margin: 1rem;
+  scroll-behavior: smooth;
+}
+
+pre {
+  height: calc(100% - 1rem);
+  overflow: visible;
+  white-space: nowrap;
+}
+
+code {
+  white-space: pre-wrap;
+  overflow: auto;
+}
+
+/* Navbar by Annisa Nadia - https://codepen.io/annadineyl/pen/LYPNMVO */
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.6);
+  min-height: 8vh;
+}
+header .logo {
+  padding: 0 28px;
+  font-size: 23px;
+  letter-spacing: 5px;
+}
+header a {
+  text-decoration: none;
+  color: #4a494b;
+}
+header nav {
+  display: flex;
+  align-items: center;
+  margin: 0 28px;
+}
+header ul {
+  margin: 0;
+  padding-left: 0;
+  list-style-type: none;
+  display: flex;
+}
+header ul a {
+  padding: 21px 26px;
+  transition: all 0.3s ease;
+}
+header ul a:hover {
+  color: #e0dcd5;
+  cursor: pointer;
+}
+header li {
+  font-size: 14px;
+  padding: 21px 0;
+  font-weight: 700;
+}
+.burger {
+  display: none;
+  cursor: pointer;
+}
+.burger div {
+  width: 25px;
+  height: 3px;
+  background: #4a494b;
+  margin: 5px;
+}
+.close-btn {
+  display: none;
+  width: 18px;
+  margin: 0 auto 30px auto;
+  cursor: pointer;
+}
+.close-btn path {
+  fill: #4a494b;
+}
+.nav-show {
+  transform: translateX(0);
+}
+@keyframes navFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes navFadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+}
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: row-reverse;
+  }
+  header nav {
+    width: 100%;
+  }
+  header ul {
+    padding-top: 45px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-width: 169px;
+    max-width: 340px;
+    width: 60%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background: #cfc9bd;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in;
+  }
+  header ul a {
+    display: block;
+  }
+  header ul a:hover {
+    color: black;
+  }
+  header li {
+    padding: 0;
+    opacity: 0;
+  }
+  .burger {
+    display: block;
+  }
+  .close-btn {
+    display: block;
+  }
+}
+/* End of navbar */
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 0.8rem;
+  cursor: pointer;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  background: rgba(0, 255, 255, 0.8);
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 255, 255, 0.4);
+}
