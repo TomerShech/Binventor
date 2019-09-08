@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block content %}
+<link rel="stylesheet" href="../static/css/index.css" />
+
+<form action="/submit" method="post">
+  <textarea
+    class="codeta"
+    spellcheck="false"
+    placeholder="Your beautiful code here..."
+    autofocus
+    onkeydown="insertTab(this, event);"
+    name="paste_body"
+  ></textarea>
+  <div class="btns">
+    <input
+      type="text"
+      name="paste_name"
+      placeholder="Paste Name (optional)"
+      title="If not blank, the name will appear as the paste title"
+    />
+    <select name="expiration" title="Default expiration time is 1 day">
+      <option selected="true" disabled="disabled"
+        >Paste Expiration</option
+      >
+      <option value="60">1 Hour</option>
+      <option value="1440">1 Day</option>
+      <option value="10080">1 Week</option>
+      <option value="20160">2 Weeks</option>
+      <option value="43800">1 Month</option>
+    </select>
+    <input type="submit" value="Create New Paste!" />
+  </div>
+</form>
+
+<pre><code></code></pre>
+
+{% endblock %}

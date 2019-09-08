@@ -2,78 +2,56 @@
   font-size: 16px;
 }
 
-* {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-}
-
+*,
 *:before,
 *:after {
   box-sizing: border-box;
 }
 
+* {
+  padding: 0;
+  margin: 0;
+}
+
 html {
-  background-color: #212121;
   height: 100%;
-  width: 100%;
-  overflow: visible;
+  overflow: hidden;
 }
 
 body {
-  display: inline-block; /* allows to set width and height to element */
-  height: calc(100% - 1rem);
-  width: inherit; /* inherits width from parent element (html in this case) */
-
+  height: 100%;
+  width: 100%;
+  background-color: #212121;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 1fr;
-  grid-template-areas: "navbar" "_content";
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "navbar" "main_code" "footer";
 }
 
-.navbar {
-  grid-area: navbar;
-}
-
-._content {
-  grid-area: _content;
-}
-
-#ta {
-  color: white;
-  font-size: 1rem;
-  font-family: monospace;
-  background-color: inherit;
-  border: none;
-  outline: none;
-  resize: none;
-  width: calc(100% - 4rem);
-  height: calc(100% - 1rem);
-  clear: left;
-  padding: 10px;
-  margin: 1rem;
-  scroll-behavior: smooth;
+main {
+  grid-area: main_code;
+  height: 100%;
+  width: 100%;
 }
 
 pre {
-  height: calc(100% - 1rem);
-  overflow: visible;
-  white-space: nowrap;
+  padding: 1rem;
 }
 
-code {
-  white-space: pre-wrap;
-  overflow: auto;
+a {
+  outline: none;
 }
 
-/* Navbar by Annisa Nadia - https://codepen.io/annadineyl/pen/LYPNMVO */
 header {
+  grid-area: navbar;
+  background-color: #212121;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 1px 0 5px rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid black;
   min-height: 8vh;
+  z-index: 10;
 }
 header .logo {
   padding: 0 28px;
@@ -82,7 +60,7 @@ header .logo {
 }
 header a {
   text-decoration: none;
-  color: #4a494b;
+  color: #dddddd;
 }
 header nav {
   display: flex;
@@ -99,8 +77,9 @@ header ul a {
   padding: 21px 26px;
   transition: all 0.3s ease;
 }
-header ul a:hover {
-  color: #e0dcd5;
+header ul a:hover,
+header a:hover {
+  color: rgba(0, 255, 255, 0.8);
   cursor: pointer;
 }
 header li {
@@ -115,7 +94,7 @@ header li {
 .burger div {
   width: 25px;
   height: 3px;
-  background: #4a494b;
+  background: #dddddd;
   margin: 5px;
 }
 .close-btn {
@@ -130,6 +109,7 @@ header li {
 .nav-show {
   transform: translateX(0);
 }
+
 @keyframes navFadeIn {
   from {
     opacity: 0;
@@ -164,7 +144,7 @@ header li {
     flex-direction: column;
     min-width: 169px;
     max-width: 340px;
-    width: 60%;
+    width: 30%;
     position: absolute;
     left: 0;
     top: 0;
@@ -175,9 +155,11 @@ header li {
   }
   header ul a {
     display: block;
+    color: #212121;
   }
   header ul a:hover {
-    color: black;
+    color: rgba(0, 255, 255, 0.8);
+    background-color: #212121;
   }
   header li {
     padding: 0;
@@ -189,8 +171,14 @@ header li {
   .close-btn {
     display: block;
   }
+  footer div:first-child,
+  footer div:last-child {
+    display: none;
+  }
+  footer div:nth-child(2) {
+    grid-column: 1 / 4;
+  }
 }
-/* End of navbar */
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -216,4 +204,55 @@ header li {
 }
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(0, 255, 255, 0.4);
+}
+
+/* Made with love footer */
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+footer {
+  grid-area: footer;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #212121;
+  color: #dddddd;
+  padding: 0.6rem;
+  border-top: 1px solid black;
+  box-shadow: 0 0 4px black;
+  z-index: 10;
+}
+
+footer div {
+  text-align: center;
+}
+
+footer div:nth-child(2) i {
+  color: #e25555;
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+  animation: beat 1s ease infinite;
+}
+
+footer .fab {
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
+  color: #fefefe;
+}
+
+footer .fa-discord:hover {
+  color: #738adb;
+  transition: color 0.3s ease-in;
 }

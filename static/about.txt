@@ -1,0 +1,26 @@
+QPastes' features:
+
+1. Manually choosing your code's programming language? NEVER! QPastes will automatically highlight it for you.
+
+2. No more ugliness or unresponsive design! (Forgive me, Pastebin), QPastes is built with modern standards in mind.
+
+3. Your pastes will be deleted ONLY when you want them to. Select the expiration time you think is best.
+
+4. Use the keyboard shortcuts that you're already familiar with, or, you know, the regular buttons.
+
+
+Shortcut Keys:
+Ctrl + S to save & get a shareable link
+Ctrl + R to create a new paste
+Ctrl + E to edit an existing paste
+
+
+QPastes is a text pasting web app that aims for simple & easy sharing of code snippets.
+I started making it as a personal project for myself, in order to improve my web skills.
+But then I got into the Computer Science class at my high school, so I chose to put it online for my class to use.
+If you are some random internet person who somehow got here, don't worry, my auto-non-cs-class-person-detector will find & eliminate you!
+
+If you want to help me by contributing to this project, feel free to check out my GitHub repo and create a new pull request.
+
+Thank you all for using my website,
+Tomer.
