@@ -1,4 +1,3 @@
-// Navbar
 const burger = document.querySelector("nav .burger");
 const close = document.querySelector("nav .close-btn");
 const nav = document.querySelector("nav ul");
@@ -21,4 +20,3 @@ close.addEventListener("click", () => {
     link.style.animation = "navFadeOut 0.2s ease backwards";
   });
 });
-// End of navbar

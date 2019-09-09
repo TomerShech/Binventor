@@ -1,6 +1,5 @@
 const ta = document.getElementsByClassName("codeta")[0];
 const form = document.querySelector("form");
-const code = document.querySelector("code");
 const MAX_ALLOWED_CHARS = 35000;
 
 function getOS() {
@@ -26,30 +25,25 @@ document.addEventListener(
     if (
       getOS() === "MacOS" ? e.metaKey : e.ctrlKey && e.key.toLowerCase() === "s"
     ) {
-      e.preventDefault();
+      e.preventDefault(); // prevents saving of website as html file
+
       let len = ta.value.length;
-      
+
       if (ta.value !== null && ta.value.trim() !== "") {
         if (len <= MAX_ALLOWED_CHARS) {
-          //form.submit();
-          let temp = ta.value;
-          ta.parentNode.removeChild(ta);
-          form.parentNode.removeChild(form);
-          code.textContent = temp;
-          hljs.highlightBlock(code);
-          document.documentElement.style.overflow = "auto";
+          form.submit();
         } else {
-          swal(
-            "OOPS!",
+          Swal.fire(
+            "WOW! THAT'S A LONG ONE!",
             `Sorry buddy, currently we only allow pastes with max ${MAX_ALLOWED_CHARS} characters. (You pasted ${len})`,
-            "warning"
+            "error"
           );
         }
       } else {
-        swal(
-          "Seems like no code was pasted",
-          "Ugh! I can't see any code here. maybe try again?",
-          "error"
+        Swal.fire(
+          "Where is the text?",
+          "I can't see any code here, please try again.",
+          "question"
         );
       }
     }
