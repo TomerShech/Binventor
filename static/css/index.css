@@ -14,10 +14,7 @@ form .codeta {
   border: none;
   outline: none;
   resize: none;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 1.2rem;
+  padding: 1rem;
   scroll-behavior: smooth;
 }
 
@@ -30,27 +27,18 @@ form .btns {
 form .btns input[type="text"] {
   border: none;
   outline: none;
-  padding: 0 1rem;
-}
-
-form .btns input[type="text"]::placeholder {
-  color: rgba(0, 0, 0, 0.7);
+  padding-left: 1rem;
 }
 
 form .btns input[type="submit"] {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
   padding: 0.5em 0;
   border: none;
-  font-weight: 300;
   color: white;
-  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
-  background-color: #4e9af1;
-  text-align: center;
+  font-weight: 900;
+  background-color: #5cb85c;
   transition: all 0.2s;
 }
 
 form .btns input[type="submit"]:hover {
-  opacity: 0.85;
+  opacity: 0.9;
 }

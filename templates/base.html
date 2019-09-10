@@ -16,51 +16,34 @@
       href="{{ url_for('static', filename='css/base.css') }}"
     />
     <script src="https://kit.fontawesome.com/323ecbbd5b.js"></script>
+    {% if title %}
+    <title>{{ title }} | QPastes</title>
+    {% else %}
     <title>QPastes</title>
+    {% endif %}
   </head>
   <body>
     <div class="container">
       <header>
-        <h1 class="logo">
-          <a href="{{ url_for('index') }}"
-            ><i class="fas fa-clone"></i>&nbsp;QPastes</a
-          >
-        </h1>
-        <nav>
-          <ul>
-            <svg
-              class="close-btn"
-              enable-background="new 0 0 47.971 47.971"
-              version="1.1"
-              viewBox="0 0 47.971 47.971"
-              xml:space="preserve"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88   c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242   C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879   s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"
-              />
-            </svg>
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-            <li>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/TomerShech/qpastes/pulls"
-                >Contribute&ensp;<i class="fas fa-external-link-alt"></i
-              ></a>
-            </li>
-          </ul>
-          <div class="burger">
-            <div class="line-1"></div>
-            <div class="line-2"></div>
-            <div class="line-3"></div>
-          </div>
-        </nav>
+        <a href="{{ url_for('index') }}" class="logo"
+          ><i class="fas fa-clone"></i>&nbsp;QPastes</a
+        >
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"
+          ><span class="navicon"></span
+        ></label>
+        <ul class="menu">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/TomerShech/qpastes/pulls"
+              >Contribute&ensp;<i class="fas fa-external-link-alt"></i
+            ></a>
+          </li>
+        </ul>
       </header>
       <main>
         {% block content %}{% endblock %}
@@ -91,7 +74,6 @@
       hljs.initHighlightingOnLoad();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script src="../static/js/navbar.js"></script>
     <script src="../static/js/index.js"></script>
   </body>
 </html>

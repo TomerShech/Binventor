@@ -45,143 +45,127 @@ pre {
 
 a {
   outline: none;
+  color: white;
+  text-decoration: none;
 }
 
+/* header */
 header {
   grid-area: navbar;
   background-color: #212121;
+  box-shadow: 0 0 3px 0 black;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
-  min-height: 8vh;
   z-index: 1;
 }
-header .logo {
-  padding: 0 28px;
-  font-size: 23px;
-  letter-spacing: 5px;
-}
-header a {
-  text-decoration: none;
-  color: #dddddd;
-}
-header nav {
-  display: flex;
-  align-items: center;
-  margin: 0 28px;
-}
+
 header ul {
-  margin: 0;
-  padding-left: 0;
-  list-style-type: none;
-  display: flex;
-}
-header ul a {
-  padding: 21px 26px;
-  transition: all 0.3s ease;
-}
-header ul a:hover,
-header a:hover {
-  color: rgba(0, 255, 255, 0.8);
-  cursor: pointer;
-}
-header li {
-  font-size: 14px;
-  padding: 21px 0;
-  font-weight: 700;
-}
-.burger {
-  display: none;
-  cursor: pointer;
-}
-.burger div {
-  width: 25px;
-  height: 3px;
-  background: #dddddd;
-  margin: 5px;
-}
-.close-btn {
-  display: none;
-  width: 18px;
-  margin: 0 auto 30px auto;
-  cursor: pointer;
-}
-.close-btn path {
-  fill: #4a494b;
-}
-.nav-show {
-  transform: translateX(0);
+  list-style: none;
+  overflow: hidden;
+  background-color: #212121;
 }
 
-@keyframes navFadeIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+header li a {
+  display: block;
+  padding: 20px 20px;
 }
-@keyframes navFadeOut {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
+
+header li a:hover,
+header .menu-btn:hover {
+  color: rgba(0, 255, 255, 0.8);
 }
-@media screen and (max-width: 768px) {
-  header {
-    flex-direction: row-reverse;
-  }
-  header nav {
-    width: 100%;
-  }
-  header ul {
-    padding-top: 45px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    min-width: 169px;
-    max-width: 340px;
-    width: 30%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    background: #cfc9bd;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in;
-  }
-  header ul a {
-    display: block;
-    color: #212121;
-  }
-  header ul a:hover {
-    color: rgba(0, 255, 255, 0.8);
-    background-color: #212121;
-  }
+
+header .logo {
+  display: block;
+  float: left;
+  font-size: 2em;
+  padding: 10px 20px;
+}
+
+/* menu */
+header .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+}
+
+/* menu icon */
+header .menu-icon {
+  cursor: pointer;
+  float: right;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+}
+
+header .menu-icon .navicon {
+  background: white;
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background 0.2s ease-out;
+  width: 18px;
+}
+
+header .menu-icon .navicon:before,
+header .menu-icon .navicon:after {
+  background: white;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+
+header .menu-icon .navicon:before {
+  top: 5px;
+}
+
+header .menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+header .menu-btn {
+  display: none;
+}
+
+header .menu-btn:checked ~ .menu {
+  max-height: 240px;
+}
+
+header .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+header .menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+header .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+/* 48em = 768px */
+@media (min-width: 48em) {
   header li {
-    padding: 0;
-    opacity: 0;
+    float: left;
   }
-  .burger {
-    display: block;
+  header li a {
+    padding: 20px 30px;
   }
-  .close-btn {
-    display: block;
+  header .menu {
+    clear: none;
+    float: right;
+    max-height: none;
   }
-  footer div:first-child,
-  footer div:last-child {
+  header .menu-icon {
     display: none;
-  }
-  footer div:nth-child(2) {
-    grid-column: 1 / 4;
   }
 }
 
