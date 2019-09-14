@@ -9,7 +9,7 @@
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/dracula.css') }}"
+      href="{{ url_for('static', filename='css/tomorrow-night-eighties.css') }}"
     />
     <link
       rel="stylesheet"
@@ -17,7 +17,7 @@
     />
     <script src="https://kit.fontawesome.com/323ecbbd5b.js"></script>
     {% if title %}
-    <title>{{ title }} | QPastes</title>
+    <title>{{ title | safe }} | QPastes</title>
     {% else %}
     <title>QPastes</title>
     {% endif %}
@@ -48,9 +48,13 @@
       <main>
         {% block content %}{% endblock %}
       </main>
+      {% if paste %}
       <footer>
         <div>&copy; 2019 QPastes.com</div>
-        <div>Made with <i class="fas fa-heart"></i> by Tomer</div>
+        <div>
+          Made with <i class="fas fa-heart"></i> and
+          <i class="fas fa-mug-hot"></i> by Tomer
+        </div>
         <div>
           <a
             title="Follow me on GitHub!"
@@ -68,6 +72,7 @@
           ></a>
         </div>
       </footer>
+      {% endif %}
     </div>
     <script src="../static/js/highlight.pack.js"></script>
     <script>

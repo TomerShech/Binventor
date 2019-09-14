@@ -219,21 +219,28 @@ footer {
   height: 100%;
   background-color: #212121;
   color: #dddddd;
-  padding: 0.6rem;
+  padding: 0.5rem;
   border-top: 1px solid black;
   box-shadow: 0 0 4px black;
   z-index: 1;
+  font-size: 0.9rem;
 }
 
 footer div {
   text-align: center;
 }
 
-footer div:nth-child(2) i {
+footer div:nth-child(2) i:first-child {
   color: #e25555;
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 0 0.5rem;
   animation: beat 1s ease infinite;
+}
+
+footer div:nth-child(2) i:nth-child(2) {
+  color: #f5deb3;
+  font-size: 1rem;
+  padding: 0 0.5rem;
 }
 
 footer .fab {

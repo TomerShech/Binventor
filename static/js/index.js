@@ -3,7 +3,7 @@ const form = document.querySelector("form");
 const MAX_ALLOWED_CHARS = 35000;
 
 function getOS() {
-  var userAgent = window.navigator.userAgent,
+  let userAgent = window.navigator.userAgent,
     platform = window.navigator.platform,
     macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"],
     windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"],
@@ -25,24 +25,23 @@ document.addEventListener(
     if (
       getOS() === "MacOS" ? e.metaKey : e.ctrlKey && e.key.toLowerCase() === "s"
     ) {
-      e.preventDefault(); // prevents saving of website as html file
+      e.preventDefault(); // prevent saving of website as html file
 
       let len = ta.value.length;
 
       if (ta.value !== null && ta.value.trim() !== "") {
-        if (len <= MAX_ALLOWED_CHARS) {
-          form.submit();
-        } else {
+        if (len <= MAX_ALLOWED_CHARS) form.submit();
+        else {
           Swal.fire(
             "WOW! THAT'S A LONG ONE!",
-            `Sorry buddy, currently we only allow pastes with max ${MAX_ALLOWED_CHARS} characters. (You pasted ${len})`,
+            `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed. (You have ${len})`,
             "error"
           );
         }
       } else {
         Swal.fire(
           "Where is the text?",
-          "I can't see any code here, please try again.",
+          "I don't see any code here, please try again.",
           "question"
         );
       }
@@ -51,25 +50,22 @@ document.addEventListener(
   false
 );
 
-function insertTab(o, e) {
-  let kC = e.keyCode ? e.keyCode : e.charCode ? e.charCode : e.which;
-  if (kC === 9 && !e.shiftKey && !e.ctrlKey && !e.altKey) {
-    let oS = o.scrollTop;
-    if (o.setSelectionRange) {
-      let sS = o.selectionStart;
-      let sE = o.selectionEnd;
-      o.value = o.value.substring(0, sS) + "\t" + o.value.substr(sE);
-      o.setSelectionRange(sS + 1, sS + 1);
-      o.focus();
-    } else if (o.createTextRange) {
-      document.selection.createRange().text = "\t";
-      e.returnValue = false;
-    }
-    o.scrollTop = oS;
-    if (e.preventDefault) {
-      e.preventDefault();
-    }
+ta.onkeydown = function(e) {
+  if (e.keyCode === 9 || e.which === 9) {
+    e.preventDefault();
+
+    // get caret position/selection
+    let val = this.value;
+    let start = this.selectionStart;
+    let end = this.selectionEnd;
+
+    // set textarea value to: text before caret + tab + text after caret
+    this.value = val.substring(0, start) + "\t" + val.substring(end);
+
+    // put caret at right position again
+    this.selectionStart = this.selectionEnd = start + 1;
+
+    // prevent the focus lose
     return false;
   }
-  return true;
-}
+};

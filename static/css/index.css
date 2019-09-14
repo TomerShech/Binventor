@@ -22,20 +22,27 @@ form .btns {
   display: grid;
   grid-auto-columns: 1fr;
   grid-auto-flow: column;
+  padding: 0.8rem 1rem;
+  margin: 0.8rem;
+  box-shadow: 0 0 4px black;
+  z-index: 1;
+  border-radius: 0.5rem;
 }
 
-form .btns input[type="text"] {
-  border: none;
+form .btns input[type="text"],
+form .btns select,
+form .btns input[type="submit"] {
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
   outline: none;
-  padding-left: 1rem;
+  border: none;
+  padding: 0.8rem;
 }
 
 form .btns input[type="submit"] {
-  padding: 0.5em 0;
-  border: none;
   color: white;
   font-weight: 900;
-  background-color: #5cb85c;
+  background-color: rgba(0, 255, 255, 0.6);
   transition: all 0.2s;
 }
 

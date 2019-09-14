@@ -6,14 +6,15 @@ verify_ssl = true
 [dev-packages]
 autopep8 = "*"
 pylint = "*"
+pylint-flask = "*"
 
 [packages]
 flask = "*"
 flask-sqlalchemy = "*"
 gunicorn = "*"
-psycopg2 = "*"
 psycopg2-binary = "*"
-uwsgi = "*"
+psycopg2 = "*"
+pylint-flask = "*"
 
 [requires]
 python_version = "3.7"
