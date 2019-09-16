@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<link rel="stylesheet" href="../static/css/404.css" />
+  	
+  	<div class="c-404">
+		<div class="num-404"><span>4</span>
+			<span>0</span>
+			<span>4</span></div>
+		<h1>OOPS! Page Not Found</h1>
+		<h2>What you were looking for is just not there.</h2>
+		<a href="{{ url_for('index') }}">Go back home</a>
+  	</div>
+{% endblock %}

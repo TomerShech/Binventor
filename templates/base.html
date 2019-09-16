@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/normalize.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/tomorrow-night-eighties.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/base.css') }}"
-    />
-    <script src="https://kit.fontawesome.com/323ecbbd5b.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/icomoon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tomorrow-night-eighties.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
     {% if title %}
     <title>{{ title | safe }} | Binventor</title>
     {% else %}
@@ -25,7 +16,7 @@
   <body>
     <header>
       <a href="{{ url_for('index') }}" class="logo"
-        ><i class="fas fa-clone"></i>&nbsp;Binventor</a
+        ><span class="icon-copy"></span>&nbsp;Binventor</a
       >
       <input class="menu-btn" type="checkbox" id="menu-btn" />
       <label class="menu-icon" for="menu-btn"
@@ -39,8 +30,7 @@
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/TomerShech/binventor/pulls"
-            >Contribute&ensp;<i class="fas fa-external-link-alt"></i
-          ></a>
+            >Contribute&ensp;<span class="icon-external-link"></span></a>
         </li>
       </ul>
     </header>
@@ -49,10 +39,10 @@
     </main>
     {% if is_paste %}
     <footer>
-      <div>&copy; 2019 Binventor.com</div>
+      <div>&copy; 2019 <a href="{{ url_for('index') }}">Binventor.com</a></div>
       <div>
-        Made with <i class="fas fa-heart"></i> and
-        <i class="fas fa-mug-hot"></i> by Tomer
+        Made with <span class="icon-heart"></span> and
+        <span class="icon-coffee"></span> by Tomer
       </div>
       <div>
         <a
@@ -60,15 +50,13 @@
           target="_blank"
           rel="noopener noreferrer"
           href="https://github.com/TomerShech/"
-          ><i class="fab fa-github"></i
-        ></a>
+          ><span class="icon-github"></span></a>
         <a
           title="Add me on Discord!"
           target="_blank"
           rel="noopener noreferrer"
           href=""
-          ><i class="fab fa-discord"></i
-        ></a>
+          ><span class="icon-discord"></span></a>
       </div>
     </footer>
     {% endif %}
