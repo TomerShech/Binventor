@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %}
 <link rel="stylesheet" href="../static/css/index.css" />
 
-<form action="/paste" method="post">
+<form action="/submit" method="POST">
   <textarea
     class="codeta"
     spellcheck="false"
@@ -11,7 +11,12 @@
     name="paste_body"
   ></textarea>
   <div class="btns">
-    <input type="text" name="paste_name" placeholder="Paste Name (optional)" maxlength="100" />
+    <input
+      type="text"
+      name="paste_name"
+      placeholder="Paste Name (optional)"
+      maxlength="100"
+    />
     <select name="expiration">
       <option value="60" selected="selected">1 Hour</option>
       <option value="1440">1 Day</option>
@@ -19,9 +24,10 @@
       <option value="43800">1 Month</option>
     </select>
     <input
+      id="submit_btn"
       type="submit"
       value="Create New Paste!"
-      title="I don't like when hovering over me! so just click!"
+      title="I don't like when hovering over me! just click!"
     />
   </div>
 </form>

@@ -17,63 +17,61 @@
     />
     <script src="https://kit.fontawesome.com/323ecbbd5b.js"></script>
     {% if title %}
-    <title>{{ title | safe }} | QPastes</title>
+    <title>{{ title | safe }} | Binventor</title>
     {% else %}
-    <title>QPastes</title>
+    <title>Binventor</title>
     {% endif %}
   </head>
   <body>
-    <div class="container">
-      <header>
-        <a href="{{ url_for('index') }}" class="logo"
-          ><i class="fas fa-clone"></i>&nbsp;QPastes</a
-        >
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn"
-          ><span class="navicon"></span
-        ></label>
-        <ul class="menu">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-          <li>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://github.com/TomerShech/qpastes/pulls"
-              >Contribute&ensp;<i class="fas fa-external-link-alt"></i
-            ></a>
-          </li>
-        </ul>
-      </header>
-      <main>
-        {% block content %}{% endblock %}
-      </main>
-      {% if paste %}
-      <footer>
-        <div>&copy; 2019 QPastes.com</div>
-        <div>
-          Made with <i class="fas fa-heart"></i> and
-          <i class="fas fa-mug-hot"></i> by Tomer
-        </div>
-        <div>
+    <header>
+      <a href="{{ url_for('index') }}" class="logo"
+        ><i class="fas fa-clone"></i>&nbsp;Binventor</a
+      >
+      <input class="menu-btn" type="checkbox" id="menu-btn" />
+      <label class="menu-icon" for="menu-btn"
+        ><span class="navicon"></span
+      ></label>
+      <ul class="menu">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li>
           <a
-            title="Follow me on GitHub!"
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/TomerShech/"
-            ><i class="fab fa-github"></i
+            href="https://github.com/TomerShech/binventor/pulls"
+            >Contribute&ensp;<i class="fas fa-external-link-alt"></i
           ></a>
-          <a
-            title="Add me on Discord!"
-            target="_blank"
-            rel="noopener noreferrer"
-            href=""
-            ><i class="fab fa-discord"></i
-          ></a>
-        </div>
-      </footer>
-      {% endif %}
-    </div>
+        </li>
+      </ul>
+    </header>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+    {% if is_paste %}
+    <footer>
+      <div>&copy; 2019 Binventor.com</div>
+      <div>
+        Made with <i class="fas fa-heart"></i> and
+        <i class="fas fa-mug-hot"></i> by Tomer
+      </div>
+      <div>
+        <a
+          title="Follow me on GitHub!"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/TomerShech/"
+          ><i class="fab fa-github"></i
+        ></a>
+        <a
+          title="Add me on Discord!"
+          target="_blank"
+          rel="noopener noreferrer"
+          href=""
+          ><i class="fab fa-discord"></i
+        ></a>
+      </div>
+    </footer>
+    {% endif %}
     <script src="../static/js/highlight.pack.js"></script>
     <script>
       hljs.initHighlightingOnLoad();

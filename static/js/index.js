@@ -1,6 +1,8 @@
 const ta = document.getElementsByClassName("codeta")[0];
 const form = document.querySelector("form");
+const submitBtn = document.getElementById("submit_btn");
 const MAX_ALLOWED_CHARS = 35000;
+const len = ta.value.length;
 
 function getOS() {
   let userAgent = window.navigator.userAgent,
@@ -19,36 +21,54 @@ function getOS() {
   return os;
 }
 
-document.addEventListener(
-  "keydown",
-  function(e) {
-    if (
-      getOS() === "MacOS" ? e.metaKey : e.ctrlKey && e.key.toLowerCase() === "s"
-    ) {
-      e.preventDefault(); // prevent saving of website as html file
+let submitWithCtrlS = function(e) {
+  if (
+    getOS() === "MacOS" ? e.metaKey : e.ctrlKey && e.key.toLowerCase() === "s"
+  ) {
+    e.preventDefault(); // prevent saving of website as html file
 
-      let len = ta.value.length;
-
-      if (ta.value !== null && ta.value.trim() !== "") {
-        if (len <= MAX_ALLOWED_CHARS) form.submit();
-        else {
-          Swal.fire(
-            "WOW! THAT'S A LONG ONE!",
-            `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed. (You have ${len})`,
-            "error"
-          );
-        }
-      } else {
+    if (ta.value !== null && ta.value.trim() !== "") {
+      if (len <= MAX_ALLOWED_CHARS) form.submit();
+      else {
         Swal.fire(
-          "Where is the text?",
-          "I don't see any code here, please try again.",
-          "question"
+          "WOW! THAT'S A LONG ONE!",
+          `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed. (You have ${len})`,
+          "error"
         );
       }
+    } else {
+      Swal.fire(
+        "Where is the text?",
+        "I don't see any code here, please try again.",
+        "question"
+      );
     }
-  },
-  false
-);
+  }
+};
+
+let submitWithBtn = function(e) {
+  e.preventDefault();
+
+  if (ta.value !== null && ta.value.trim() !== "") {
+    if (len <= MAX_ALLOWED_CHARS) form.submit();
+    else {
+      Swal.fire(
+        "WOW! THAT'S A LONG ONE!",
+        `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed. (You have ${len})`,
+        "error"
+      );
+    }
+  } else {
+    Swal.fire(
+      "Where is the text?",
+      "I don't see any code here, please try again.",
+      "question"
+    );
+  }
+};
+
+document.addEventListener("keydown", submitWithCtrlS, false);
+document.addEventListener("submit", submitWithBtn, false);
 
 ta.onkeydown = function(e) {
   if (e.keyCode === 9 || e.which === 9) {
