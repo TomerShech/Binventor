@@ -11,6 +11,7 @@ flask = "*"
 flask-sqlalchemy = "*"
 psycopg2-binary = "*"
 psycopg2 = "*"
+uwsgi = "*"
 
 [requires]
 python_version = "3.7"
