@@ -1,0 +1,21 @@
+main {
+   color: white;
+   padding: 0 2rem;
+}
+
+main h1 {
+    color: rgba(0, 255, 255, 0.9);
+    padding: .5rem 0;
+}
+
+main p {
+    color: #eeeeee;
+}
+
+main ul {
+    padding: 0 1rem;
+}
+
+main ul li {
+    padding: .4rem 0;
+}

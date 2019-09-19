@@ -1,0 +1,27 @@
+main {
+  overflow-x: hidden;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  width: 100%;
+  background-color: #dddddd;
+}
+
+.actions a {
+  color: #212121;
+  text-decoration: underline;
+}
+
+.actions button {
+  color: #212121;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-left: 0.8rem;
+  font-size: 2rem;
+}

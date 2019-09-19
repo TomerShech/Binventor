@@ -1,83 +1,59 @@
 const ta = document.getElementsByClassName("codeta")[0];
 const form = document.querySelector("form");
 const submitBtn = document.getElementById("submit_btn");
-const MAX_ALLOWED_CHARS = 35000;
-const len = ta.value.length;
+const MAX_ALLOWED_CHARS = 40000;
 
 function getOS() {
-  let userAgent = window.navigator.userAgent,
-    platform = window.navigator.platform,
+  let platform = window.navigator.platform,
     macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"],
     windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"],
-    iosPlatforms = ["iPhone", "iPad", "iPod"],
     os = null;
 
   if (macosPlatforms.indexOf(platform) !== -1) os = "MacOS";
-  else if (iosPlatforms.indexOf(platform) !== -1) os = "iOS";
   else if (windowsPlatforms.indexOf(platform) !== -1) os = "Windows";
-  else if (/Android/.test(userAgent)) os = "Android";
   else if (!os && /Linux/.test(platform)) os = "Linux";
 
   return os;
 }
 
-let submitWithCtrlS = function(e) {
-  if (
-    getOS() === "MacOS" ? e.metaKey : e.ctrlKey && e.key.toLowerCase() === "s"
-  ) {
+function submitWithCtrlS(e) {
+  const len = ta.value.length;
+
+  if (getOS() === "MacOS" ? e.metaKey : e.ctrlKey && e.key.toLowerCase() === "s") {
     e.preventDefault(); // prevent saving of website as html file
 
-    if (ta.value !== null && ta.value.trim() !== "") {
-      if (len <= MAX_ALLOWED_CHARS) form.submit();
-      else {
-        Swal.fire(
-          "WOW! THAT'S A LONG ONE!",
-          `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed. (You have ${len})`,
-          "error"
-        );
-      }
+    if (ta.value !== null && ta.value.trim() !== "" && len <= MAX_ALLOWED_CHARS) {
+        form.submit();
+    } else if (len > MAX_ALLOWED_CHARS) {
+        Notiflix.Report.Failure("THAT'S A LONG ONE!", `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed. (You have ${len})`, "OK");
     } else {
-      Swal.fire(
-        "Where is the text?",
-        "I don't see any code here, please try again.",
-        "question"
-      );
+      Notiflix.Report.Failure("Where is the text?", "Paste some code here and try again!", "OK");
     }
   }
-};
+}
 
-let submitWithBtn = function(e) {
+function submitWithBtn(e) {
+  const len = ta.value.length;
+  
   e.preventDefault();
 
-  if (ta.value !== null && ta.value.trim() !== "") {
-    if (len <= MAX_ALLOWED_CHARS) form.submit();
-    else {
-      Swal.fire(
-        "WOW! THAT'S A LONG ONE!",
-        `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed. (You have ${len})`,
-        "error"
-      );
-    }
+  if (ta.value !== null && ta.value.trim() !== "" && len <= MAX_ALLOWED_CHARS) {
+    form.submit();
+  } else if (len > MAX_ALLOWED_CHARS) {
+    Notiflix.Report.Failure("THAT'S A LONG ONE!", `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed. (You have ${len})`, "OK");
   } else {
-    Swal.fire(
-      "Where is the text?",
-      "I don't see any code here, please try again.",
-      "question"
-    );
+    Notiflix.Report.Failure("Where is the text?", "Paste some code here and try again!", "OK");
   }
-};
-
-document.addEventListener("keydown", submitWithCtrlS, false);
-document.addEventListener("submit", submitWithBtn, false);
+}
 
 ta.onkeydown = function(e) {
   if (e.keyCode === 9 || e.which === 9) {
     e.preventDefault();
 
     // get caret position/selection
-    let val = this.value;
-    let start = this.selectionStart;
-    let end = this.selectionEnd;
+    let val = this.value,
+      start = this.selectionStart,
+      end = this.selectionEnd;
 
     // set textarea value to: text before caret + tab + text after caret
     this.value = val.substring(0, start) + "\t" + val.substring(end);
@@ -88,4 +64,7 @@ ta.onkeydown = function(e) {
     // prevent the focus lose
     return false;
   }
-};
+}
+
+document.addEventListener("keydown", submitWithCtrlS, false);
+submitBtn.addEventListener("click", submitWithBtn, false);

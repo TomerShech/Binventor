@@ -3,19 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from datetime import datetime
 from uuid import uuid4
+from config_db import config
 
 app = Flask(__name__)
 
-ENV = "dev"
-
-if ENV == "dev":  # development database
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://postgres:proglove@localhost/BinventorDB"
-    # app.debug = True
-else:  # production database
-    app.config["SQLALCHEMY_DATABASE_URI"] = ""
-    # app.debug = False
-
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+config(app, "dev")
 
 DB = SQLAlchemy(app)
 
@@ -43,7 +35,6 @@ def generate_id(length):
 def delete_expired():
     DB.session.query(BinventorDB).filter((BinventorDB.created_at + func.make_interval(0, 0, 0, 0, 0, BinventorDB.pexr)) < datetime.utcnow()).\
     delete(synchronize_session=False)
-    print('hey')
 
 @app.route("/")
 def index():
@@ -66,17 +57,19 @@ def submit():
         else:
             return redirect(url_for("index"))
 
-
 @app.route("/<puuid>", methods=["GET", "POST"])
 def paste(puuid):
     delete_expired()
     c = BinventorDB.query.filter_by(random_uuid=puuid).first_or_404()
     return render_template("paste.html", pbody=c.pbody, title=c.pname, is_paste=True)
 
+@app.route("/about")
+def about():
+    return render_template("about.html", title="About", is_about=True)
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html", title="404 Not Found"), 404
 
 if __name__ == "__main__":
-    app.debug = True
     app.run()
