@@ -1,9 +1,9 @@
 {% extends "base.html" %} 
 
 {% block content %}
-<link rel="stylesheet" href="../static/css/index.css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 
-<form action="/submit" method="POST">
+<form action="{{ url_for('submit') }}" method="post">
   <textarea
     class="codeta"
     spellcheck="false"

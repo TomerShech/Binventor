@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<link rel="stylesheet" href="../static/css/paste.css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/paste.css') }}">
 
 <div class="actions">
   <a id="plink"></a>

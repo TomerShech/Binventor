@@ -3,13 +3,16 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from datetime import datetime
 from uuid import uuid4
-from config_db import config
+from config import Config
+from form import ContactForm
 
 app = Flask(__name__)
 
-config(app, "dev")
+app.config.from_object(Config)
+Config.config_db(app, "dev")
 
 DB = SQLAlchemy(app)
+
 
 class BinventorDB(DB.Model):
     __tablename__ = "pastes"
@@ -29,16 +32,20 @@ class BinventorDB(DB.Model):
         self.pexr = pexr
         self.random_uuid = random_uuid
 
+
 def generate_id(length):
     return str(uuid4().hex)[:length]
 
+
 def delete_expired():
-    DB.session.query(BinventorDB).filter((BinventorDB.created_at + func.make_interval(0, 0, 0, 0, 0, BinventorDB.pexr)) < datetime.utcnow()).\
-    delete(synchronize_session=False)
+    DB.session.query(BinventorDB).filter((BinventorDB.created_at + func.make_interval(0, 0, 0, 0, 0, BinventorDB.pexr))
+    < datetime.utcnow()).delete(synchronize_session=False)
+
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
@@ -54,8 +61,8 @@ def submit():
             DB.session.add(data)
             DB.session.commit()
             return redirect(url_for("paste", puuid=random_uuid))
-        else:
-            return redirect(url_for("index"))
+        return redirect(url_for("index"))
+
 
 @app.route("/<puuid>", methods=["GET", "POST"])
 def paste(puuid):
@@ -63,13 +70,24 @@ def paste(puuid):
     c = BinventorDB.query.filter_by(random_uuid=puuid).first_or_404()
     return render_template("paste.html", pbody=c.pbody, title=c.pname, is_paste=True)
 
+
 @app.route("/about")
 def about():
     return render_template("about.html", title="About", is_about=True)
 
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    form = ContactForm()
+    if form.validate_on_submit():
+        return redirect(url_for("index"))
+    return render_template("contact.html", title="Contact", form=ContactForm())
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html", title="404 Not Found"), 404
+
 
 if __name__ == "__main__":
     app.run()

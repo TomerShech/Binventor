@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block content %}
+<h1>Contact</h1>
+<form action="" method="post" novalidate>
+  {{ form.hidden_tag() }}
+
+  {{ form.name.label }}
+  {{ form.name(size=32) }}
+
+  {{ form.email.label }}
+  {{ form.email(size=32) }}
+
+  {{ form.message.label }}
+  {{ form.message(size=32) }}
+
+  {{ form.submit() }}
+</form>
+{% endblock %}
