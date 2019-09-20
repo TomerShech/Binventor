@@ -9,7 +9,7 @@ from form import ContactForm
 app = Flask(__name__)
 
 app.config.from_object(Config)
-Config.config_db(app, "dev")
+Config.config_db(app, "prod")
 
 DB = SQLAlchemy(app)
 
