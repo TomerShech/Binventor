@@ -20,7 +20,7 @@ class BinventorDB(DB.Model):
     pid = DB.Column(DB.Integer, primary_key=True)  # paste id
     pname = DB.Column(DB.String(100), nullable=False)  # paste name (title)
     # paste body (actual pasted code)
-    pbody = DB.Column(DB.String(35000), nullable=False)
+    pbody = DB.Column(DB.String(40000), nullable=False)
     # paste expiration time (in minutes)
     pexr = DB.Column(DB.Integer, nullable=False)
     random_uuid = DB.Column(DB.String(8), nullable=False)
