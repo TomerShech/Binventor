@@ -12,7 +12,6 @@ flask-sqlalchemy = "*"
 psycopg2-binary = "*"
 psycopg2 = "*"
 flask-wtf = "*"
-gunicorn = "*"
 
 [requires]
 python_version = "3.7"
