@@ -1,18 +1,31 @@
 import os
 
 class Config:
-    SECRET_KEY = os.environ.get("SECRET_KEY") or "d76a649f80e4441cb4a09aff3e662e81"
+    SECRET_KEY = os.environ.get("SECRET_KEY")
 
-    def config_db(app, env):
+    def __init__(self, app):
+       self.app = app
+
+    def config_db(self, env):
         if env == "dev":
-            app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://postgres:proglove@localhost/BinventorDB"
-            app.debug = True
+            self.app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URI")
+            self.app.debug = True
         elif env == "prod":
             # production database
-            app.config["SQLALCHEMY_DATABASE_URI"] = ""
-            app.debug = False
+            self.app.config["SQLALCHEMY_DATABASE_URI"] = ""
+            self.app.debug = False
         else:
             print("The argument should be either 'dev' for development or 'prod' for production")
             return None
 
-        app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+        self.app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    def config_mail(self):
+        self.app.config["MAIL_SERVER"] = "smtp.gmail.com"
+        self.app.config["MAIL_PORT"] = 587
+        self.app.config["MAIL_USE_TLS"] = True 
+        self.app.config["MAIL_USE_SSL"] = False
+        self.app.config["MAIL_USERNAME"] = os.environ.get("GMAIL_USERNAME")
+        self.app.config["MAIL_PASSWORD"] = os.environ.get("GMAIL_PASSWORD")
+        self.app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("GMAIL_USERNAME")
+        self.app.config["MAIL_ASCII_ATTACHMENTS"] = False

@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail, Message
 from sqlalchemy.sql import func
 from datetime import datetime
 from uuid import uuid4
@@ -8,8 +9,13 @@ from form import ContactForm
 
 app = Flask(__name__)
 
+con = Config(app)
+
 app.config.from_object(Config)
-Config.config_db(app, "dev")
+con.config_db("dev")
+con.config_mail()
+
+mail = Mail(app)
 
 DB = SQLAlchemy(app)
 
@@ -78,7 +84,11 @@ def about():
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     form = ContactForm()
+    
     if form.validate_on_submit():
+        msg_body = "A person named {0}\nsent you: {1}".format(form.name.data, form.message.data)
+        msg = Message("New email from {0}".format(form.name.data), recipients=["shechnert@gmail.com"], body=msg_body)
+        mail.send(msg)
         return redirect(url_for("index"))
     return render_template("contact.html", title="Contact", form=ContactForm())
 
