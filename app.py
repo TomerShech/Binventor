@@ -13,7 +13,6 @@ Config.config_db(app, "dev")
 
 DB = SQLAlchemy(app)
 
-
 class BinventorDB(DB.Model):
     __tablename__ = "pastes"
 
@@ -87,7 +86,7 @@ def contact():
 @app.route("/recent")
 def recent():
     delete_expired()
-    ptuple = tuple(DB.session.query(BinventorDB).all())        
+    ptuple = tuple(DB.session.query(BinventorDB).all())[::-1]
     return render_template("recent.html", title="Recent Pastes", ptuple=ptuple, now=datetime.utcnow())
 
 

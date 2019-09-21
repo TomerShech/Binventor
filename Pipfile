@@ -12,6 +12,7 @@ flask-sqlalchemy = "*"
 psycopg2-binary = "*"
 psycopg2 = "*"
 flask-wtf = "*"
+flask-mail = "*"
 
 [requires]
 python_version = "3.7"

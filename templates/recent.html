@@ -1,54 +1,7 @@
 {% extends "base.html" %} 
 
 {% block content %}
-<style>
-    main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem;
-    }
-
-    table {
-        border-collapse: collapse;
-        text-align: left;
-        width: 100%;
-    }
-  
-    table thead tr {
-      text-align: left;
-      color: white;
-      font-weight: bold;
-      background-color: #9884fc;
-    }
-
-  table a {
-      color: black;
-      font-weight: bold;
-    }
-
-    table a:hover {
-        color: #9884fc;
-    }
-    
-  table th, table td {
-      padding: 0.6rem;
-    }
-    
-    table tbody tr {
-        background-color: white;
-        border-bottom: 1px solid #cacaca;
-    }
-    
-    table tbody tr:hover {
-        background-color: #eeeeee;
-   }
-
-   h1 {
-       color: aqua;
-   }
-</style>
-
+<link rel="stylesheet" href="{{ url_for('static', filename='css/recent.css') }}" />
 {% if ptuple %}
 <table>
   <thead>
