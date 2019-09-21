@@ -8,9 +8,12 @@ class Config:
         if env == "dev":
             app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://postgres:proglove@localhost/BinventorDB"
             app.debug = True
-        else:
+        elif env == "prod":
             # production database
-            app.config["SQLALCHEMY_DATABASE_URI"] = "postgres://zgbechbatizsrw:ea0e4d4658ec1d7a94c31311d537a639aec2034b61af9710f301bdc9d23c6035@ec2-54-221-238-248.compute-1.amazonaws.com:5432/dathk3a9fhh79g"
+            app.config["SQLALCHEMY_DATABASE_URI"] = ""
             app.debug = False
+        else:
+            print("The argument should be either 'dev' for development or 'prod' for production")
+            return None
 
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False

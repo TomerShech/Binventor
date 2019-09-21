@@ -9,7 +9,7 @@ from form import ContactForm
 app = Flask(__name__)
 
 app.config.from_object(Config)
-Config.config_db(app, "prod")
+Config.config_db(app, "dev")
 
 DB = SQLAlchemy(app)
 
@@ -82,6 +82,13 @@ def contact():
     if form.validate_on_submit():
         return redirect(url_for("index"))
     return render_template("contact.html", title="Contact", form=ContactForm())
+
+
+@app.route("/recent")
+def recent():
+    delete_expired()
+    ptuple = tuple(DB.session.query(BinventorDB).all())        
+    return render_template("recent.html", title="Recent Pastes", ptuple=ptuple, now=datetime.utcnow())
 
 
 @app.errorhandler(404)

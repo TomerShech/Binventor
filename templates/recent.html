@@ -1,0 +1,81 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<style>
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    table {
+        border-collapse: collapse;
+        text-align: left;
+        width: 100%;
+    }
+  
+    table thead tr {
+      text-align: left;
+      color: white;
+      font-weight: bold;
+      background-color: #9884fc;
+    }
+
+  table a {
+      color: black;
+      font-weight: bold;
+    }
+
+    table a:hover {
+        color: #9884fc;
+    }
+    
+  table th, table td {
+      padding: 0.6rem;
+    }
+    
+    table tbody tr {
+        background-color: white;
+        border-bottom: 1px solid #cacaca;
+    }
+    
+    table tbody tr:hover {
+        background-color: #eeeeee;
+   }
+
+   h1 {
+       color: aqua;
+   }
+</style>
+
+{% if ptuple %}
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Posted</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in ptuple %} 
+    {% set ago, url = now - p.created_at, request.url_root + p.random_uuid %}
+
+    <tr>
+      <td>
+        <a href="{{ url }}">{{ p.pname }}</a>
+      </td>
+      {% if ago.seconds <= 60 %}
+      <td>{{ ago.seconds }} sec ago</td>
+      {% elif ago.seconds > 60 and ago.seconds <= 3600 %}
+      <td>{{ ago.seconds // 60 }} min ago</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<h1>No recently posted pastes :(</h1>
+{% endif %} 
+{% endblock %}
