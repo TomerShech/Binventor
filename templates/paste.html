@@ -5,7 +5,7 @@
 
 <div class="actions">
   <a id="plink"></a>
-  <button onclick="copyAToClipboard()"><span class="icon-copy"></span></button>
+  <button onclick="copyToClipboard();"><span class="icon-copy"></span></button>
 </div>
 
 <pre><code>{{ pbody }}</code></pre>
@@ -17,7 +17,7 @@
   a.innerHTML = window.location.href;
   a.href = window.location.href;
 
-  function copyAToClipboard() {
+  function copyToClipboard() {
     const range = document.createRange();
     range.selectNode(a);
     window.getSelection().removeAllRanges(); // clear current selection
@@ -26,5 +26,7 @@
     window.getSelection().removeAllRanges(); // deselect
     Notiflix.Notify.Success("Link has been copied to clipboard!");
   }
+  
 </script>
+
 {% endblock %}

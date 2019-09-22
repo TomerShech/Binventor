@@ -39,8 +39,8 @@ class BinventorDB(DB.Model):
         self.random_uuid = random_uuid
 
 
-def generate_id(length):
-    return str(uuid4().hex)[:length]
+def generate_id():
+    return str(uuid4().hex)[:8]
 
 
 def delete_expired():
@@ -59,7 +59,7 @@ def submit():
         paste_body = request.form["paste_body"]
         paste_name = "nameless" if not request.form["paste_name"].strip() else request.form["paste_name"]
         expiration_time = request.form["expiration"]
-        random_uuid = generate_id(8)
+        random_uuid = generate_id()
 
         if not DB.session.query(BinventorDB).filter(BinventorDB.random_uuid == random_uuid).count():
             delete_expired()
@@ -97,7 +97,7 @@ def contact():
 @app.route("/recent")
 def recent():
     delete_expired()
-    ptuple = tuple(DB.session.query(BinventorDB).all())[::-1]
+    ptuple = tuple(DB.session.query(BinventorDB).all())[::-1] # reversing the tuple
     return render_template("recent.html", title="Recent Pastes", ptuple=ptuple, now=datetime.utcnow())
 
 

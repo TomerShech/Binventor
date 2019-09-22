@@ -240,3 +240,7 @@ footer div:nth-child(3) {
   padding: 0 0.5rem;
   font-size: 1.5rem;
 }
+
+footer div:nth-child(3) span:nth-child(2) {
+  cursor: pointer;
+}

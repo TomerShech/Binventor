@@ -16,7 +16,6 @@ class Config:
             self.app.debug = False
         else:
             print("The argument should be either 'dev' for development or 'prod' for production")
-            return None
 
         self.app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
