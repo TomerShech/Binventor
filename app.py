@@ -1,3 +1,4 @@
+from os import environ
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
@@ -87,7 +88,7 @@ def contact():
     
     if form.validate_on_submit():
         msg_body = "A person named {0}\nsent you: {1}".format(form.name.data, form.message.data)
-        msg = Message("New email from {0}".format(form.name.data), recipients=["shechnert@gmail.com"], body=msg_body)
+        msg = Message("New email from {0}".format(form.name.data), recipients=[environ.get("GMAIL_USERNAME")], body=msg_body)
         mail.send(msg)
         return redirect(url_for("index"))
     return render_template("contact.html", title="Contact", form=ContactForm())
