@@ -1,0 +1,54 @@
+form, .top {
+  padding: 20px;
+}
+
+form {
+  background-color: #f2f2f2;
+}
+
+.top {
+  background-color: #222222;
+}
+
+.top h1, .top h3, .top h4, .top ul {
+  color: #dddddd;
+  padding-bottom: 1rem;
+}
+
+.top ul {
+  padding-left: 1rem;
+}
+
+.top ul li {
+  padding: 5px 0;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 6px;
+  margin-bottom: 1rem;
+  resize: none;
+}
+
+textarea {
+  height: 120px;
+}
+
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}

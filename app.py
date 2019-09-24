@@ -6,7 +6,7 @@ from sqlalchemy.sql import func
 from datetime import datetime
 from uuid import uuid4
 from config import Config
-from form import ContactForm
+from form import ContactForm, SignUpForm
 
 app = Flask(__name__)
 
@@ -50,7 +50,7 @@ def delete_expired():
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", is_index=True)
 
 
 @app.route("/submit", methods=["GET", "POST"])
@@ -74,32 +74,41 @@ def submit():
 def paste(puuid):
     delete_expired()
     c = BinventorDB.query.filter_by(random_uuid=puuid).first_or_404()
-    return render_template("paste.html", pbody=c.pbody, title=c.pname, is_paste=True)
+    return render_template("paste.html", pbody=c.pbody, title=c.pname, is_footer=True)
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html", title="About", is_about=True)
+    return render_template("about.html", title="About", is_footer=True)
 
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     form = ContactForm()
-    
+    person_name = form.name.data
+
     if form.validate_on_submit():
-        msg_body = "A person named {0}\nsent you: {1}".format(form.name.data, form.message.data)
-        msg = Message("New email from {0}".format(form.name.data), recipients=[environ.get("GMAIL_USERNAME")], body=msg_body)
+        msg_body = f"<b>Name:</b> {person_name}<br /><b>Email:</b> {form.email.data}<br /><b>Message:</b>{form.message.data}"
+        msg = Message(f"New email from {person_name}", recipients=[environ.get("GMAIL_USERNAME")], html=msg_body)
         mail.send(msg)
         return redirect(url_for("index"))
-    return render_template("contact.html", title="Contact", form=ContactForm())
+    return render_template("contact.html", title="Contact", form=form, is_footer=True)
 
 
 @app.route("/recent")
 def recent():
     delete_expired()
     ptuple = tuple(DB.session.query(BinventorDB).all())[::-1] # reversing the tuple
-    return render_template("recent.html", title="Recent Pastes", ptuple=ptuple, now=datetime.utcnow())
+    return render_template("recent.html", title="Recent Pastes", ptuple=ptuple, now=datetime.utcnow(), is_footer=True)
+    
 
+@app.route("/signup")
+def signup():
+    form = SignUpForm()
+
+    if form.validate_on_submit():
+        return redirect(url_for("index"))
+    return render_template("signup.html", title="Sign Up", form=form, is_footer=True)
 
 @app.errorhandler(404)
 def page_not_found(e):

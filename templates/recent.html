@@ -19,9 +19,9 @@
         <a href="{{ url }}">{{ p.pname }}</a>
       </td>
       {% if ago.seconds <= 60 %}
-      <td>{{ ago.seconds }} sec ago</td>
+      <td>{{ ago.seconds }} seconds ago</td>
       {% elif ago.seconds > 60 and ago.seconds <= 3600 %}
-      <td>{{ ago.seconds // 60 }} min ago</td>
+      <td>{{ ago.seconds // 60 }} minutes ago</td>
       {% endif %}
     </tr>
     {% endfor %}

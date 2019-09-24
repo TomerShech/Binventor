@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}" />
+
+<form action="" method="post" novalidate>
+  <h1>Sign Up</h1>
+
+  {{ form.hidden_tag() }}
+
+  {{ form.username.label }}
+  {{ form.username() }}
+
+  {{ form.email.label }}
+  {{ form.email() }}
+
+  {{ form.password.label }}
+  {{ form.password() }}
+
+  {{ form.submit() }}
+</form>
+{% endblock %}

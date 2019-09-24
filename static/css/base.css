@@ -57,7 +57,7 @@ header ul {
 
 header li a {
   display: block;
-  padding: 20px 20px;
+  padding: 20px;
 }
 
 header li a:hover,
@@ -148,7 +148,7 @@ header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
     float: left;
   }
   header li a {
-    padding: 20px 30px;
+    padding: 20px 25px;
   }
   header .menu {
     clear: none;
@@ -239,8 +239,4 @@ footer div:nth-child(2) span:nth-child(2) {
 footer div:nth-child(3) {
   padding: 0 0.5rem;
   font-size: 1.5rem;
-}
-
-footer div:nth-child(3) span:nth-child(2) {
-  cursor: pointer;
 }

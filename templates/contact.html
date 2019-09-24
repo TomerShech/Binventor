@@ -1,16 +1,30 @@
-{% extends "base.html" %} {% block content %}
-<h1>Contact</h1>
+{% extends "base.html" %} 
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}" />
+
+<div class="top">
+  <h1>Contact</h1>
+  <h3>Send whatever you want directly to me</h3>
+  <h4>You may:</h4>
+  <ul>
+    <li>Send me your feedback about the website</li>
+    <li>Report a bug or problem you spotted</li>
+    <li>Tell me about new feature(s) you want the website to have</li>
+    <li>Just say something nice!</li>
+  </ul>
+</div>
 <form action="" method="post" novalidate>
   {{ form.hidden_tag() }}
 
   {{ form.name.label }}
-  {{ form.name(size=32) }}
+  {{ form.name() }}
 
   {{ form.email.label }}
-  {{ form.email(size=32) }}
+  {{ form.email() }}
 
   {{ form.message.label }}
-  {{ form.message(size=32) }}
+  {{ form.message() }}
 
   {{ form.submit() }}
 </form>

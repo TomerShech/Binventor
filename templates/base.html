@@ -16,13 +16,9 @@
   </head>
   <body>
     <header>
-      <a href="{{ url_for('index') }}" class="logo"
-        ><span class="icon-copy"></span>&nbsp;Binventor</a
-      >
+      <a href="{{ url_for('index') }}" class="logo"><span class="icon-copy"></span>&nbsp;Binventor</a>
       <input class="menu-btn" type="checkbox" id="menu-btn" />
-      <label class="menu-icon" for="menu-btn"
-        ><span class="navicon"></span
-      ></label>
+      <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
       <ul class="menu">
         <li><a href="{{ url_for('recent') }}">Pastes</a></li>
         <li><a href="{{ url_for('about') }}">About</a></li>
@@ -32,14 +28,15 @@
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/TomerShech/binventor/pulls"
-            >Contribute&ensp;<span class="icon-external-link"></span></a>
+            >Contribute&ensp;<span class="icon-external-link"></span>
+          </a>
         </li>
       </ul>
     </header>
     <main>
       {% block content %}{% endblock %}
     </main>
-    {% if is_paste or is_about %}
+    {% if is_footer %}
     <footer>
       <div>&copy; 2019 <a href="{{ url_for('index') }}">Binventor.com</a></div>
       <div>
@@ -64,13 +61,11 @@
         position: "left-bottom"
       });
     </script>
-    {% if not is_about %}
     <script src="../static/js/highlight.pack.js"></script>
     <script>
       hljs.initHighlightingOnLoad();
     </script>
-    {% endif %}
-    {% if not (is_paste or is_about) %}
+    {% if is_index %}
     <script src="../static/js/index.js"></script>
     {% endif %}
   </body>
