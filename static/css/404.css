@@ -12,10 +12,9 @@
     margin: 2rem;
 }
 
-@media screen and (max-width: 48em) {
-  .c-404 .num-404 span {
-    display: block;
-    font-size: 3rem;
+@media screen and (max-width: 768px) {
+  .c-404 {
+    font-size: 1rem;
   }
 }
 

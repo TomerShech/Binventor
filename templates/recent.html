@@ -2,27 +2,28 @@
 
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/recent.css') }}" />
-{% if ptuple %}
+{% if recent_pastes %}
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Posted</th>
+      <th>Will be deleted in</th>
     </tr>
   </thead>
   <tbody>
-    {% for p in ptuple %} 
+    {% for p in recent_pastes %}
     {% set ago, url = now - p.created_at, request.url_root + p.random_uuid %}
-
     <tr>
       <td>
         <a href="{{ url }}">{{ p.pname }}</a>
       </td>
-      {% if ago.seconds <= 60 %}
-      <td>{{ ago.seconds }} seconds ago</td>
-      {% elif ago.seconds > 60 and ago.seconds <= 3600 %}
-      <td>{{ ago.seconds // 60 }} minutes ago</td>
+      {% if ago.seconds <= 59 %}
+      <td>{{ ago.seconds }} sec ago</td>
+      {% elif ago.seconds > 59 and ago.seconds <= 3540 %}
+      <td>{{ ago.seconds // 60 }} min ago</td>
       {% endif %}
+      <td>{{ p.delete_at.replace(microsecond=0) - now.replace(microsecond=0) }}</td>
     </tr>
     {% endfor %}
   </tbody>

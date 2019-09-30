@@ -142,8 +142,7 @@ header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
   top: 0;
 }
 
-/* 48em = 768px */
-@media (min-width: 48em) {
+@media (min-width: 768px) {
   header li {
     float: left;
   }
@@ -232,11 +231,7 @@ footer div:nth-child(2) span:first-child {
   display: inline-block;
 }
 
-footer div:nth-child(2) span:nth-child(2) {
-  color: lightpink;
-}
-
 footer div:nth-child(3) {
-  padding: 0 0.5rem;
-  font-size: 1.5rem;
+  padding: 0 0.4rem;
+  font-size: 1.4rem;
 }

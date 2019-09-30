@@ -14,16 +14,39 @@
     <li>Just say something nice!</li>
   </ul>
 </div>
+
+<div class="errs">
+  {% if form.name.errors %} 
+  {% for error in form.name.errors %}
+  <span class="msg error-msg">{{ error }}</span>
+  {% endfor %}
+  {% endif %}
+  {% if form.email.errors %}
+  {% for error in form.email.errors %}
+  <span class="msg error-msg">{{ error }}</span>
+  {% endfor %}
+  {% endif %}
+  {% if form.message.errors %}
+  {% for error in form.message.errors %}
+  <span class="msg error-msg">{{ error }}</span>
+  {% endfor %}
+  {% endif %}
+</div>
+
 <form action="" method="post" novalidate>
+
   {{ form.hidden_tag() }}
 
   {{ form.name.label }}
+
   {{ form.name() }}
 
   {{ form.email.label }}
+
   {{ form.email() }}
 
   {{ form.message.label }}
+
   {{ form.message() }}
 
   {{ form.submit() }}

@@ -1,4 +1,4 @@
-form, .top {
+form, .top, .errs {
   padding: 20px;
 }
 
@@ -47,8 +47,26 @@ input[type="submit"] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  outline: none;
 }
 
 input[type="submit"]:hover {
   background-color: #45a049;
+}
+
+.msg {
+  width: 100%;
+  display: block;
+  padding: 0.7rem;
+  margin-bottom: 1rem;  
+  border-radius: 5px;
+  color: white;
+}
+
+.error-msg {
+  background-color: #FF4136;
+}
+
+.success-msg {
+  background-color: #4caf50;
 }

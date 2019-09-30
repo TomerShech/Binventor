@@ -1,4 +1,4 @@
-const ta = document.getElementsByClassName("codeta")[0];
+const ta = document.querySelector("textarea");
 const form = document.querySelector("form");
 const submitBtn = document.getElementById("submit_btn");
 const MAX_ALLOWED_CHARS = 40000;
@@ -19,50 +19,53 @@ function getOS() {
 function submitWithCtrlS(e) {
   const len = ta.value.length;
 
-  if (getOS() === "MacOS" ? e.metaKey : e.ctrlKey && e.key.toLowerCase() === "s") {
+  if (
+    getOS() === "MacOS" ? e.metaKey : e.ctrlKey && e.key.toLowerCase() === "s"
+  ) {
     e.preventDefault(); // prevent saving of website as html file
 
-    if (ta.value !== null && ta.value.trim() !== "" && len <= MAX_ALLOWED_CHARS) {
-        form.submit();
+    if (
+      ta.value !== null &&
+      ta.value.trim() !== "" &&
+      len <= MAX_ALLOWED_CHARS
+    ) {
+      form.submit();
     } else if (len > MAX_ALLOWED_CHARS) {
-        Notiflix.Report.Failure("THAT'S A LONG ONE!", `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed. (You have ${len})`, "OK");
+      Swal.fire({
+        title: "WOW! THAT'S A LONG ONE!",
+        text: `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed (you have ${len})`,
+        type: "error"
+      });
     } else {
-      Notiflix.Report.Failure("Where is the text?", "Paste some code here and try again!", "OK");
+      Swal.fire({
+        title: "Where is the text?",
+        text: "Paste some code here and try again!",
+        type: "question"
+      });
+      document.documentElement.classList.add("fix");
     }
   }
 }
 
 function submitWithBtn(e) {
   const len = ta.value.length;
-  
+
   e.preventDefault();
 
   if (ta.value !== null && ta.value.trim() !== "" && len <= MAX_ALLOWED_CHARS) {
     form.submit();
   } else if (len > MAX_ALLOWED_CHARS) {
-    Notiflix.Report.Failure("THAT'S A LONG ONE!", `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed. (You have ${len})`, "OK");
+    Swal.fire({
+      title: "WOW! THAT'S A LONG ONE!",
+      text: `Sorry buddy, currently only pastes with max ${MAX_ALLOWED_CHARS} characters are allowed (you have ${len})`,
+      type: "error"
+    });
   } else {
-    Notiflix.Report.Failure("Where is the text?", "Paste some code here and try again!", "OK");
-  }
-}
-
-ta.onkeydown = function(e) {
-  if (e.keyCode === 9 || e.which === 9) {
-    e.preventDefault();
-
-    // get caret position/selection
-    let val = this.value,
-      start = this.selectionStart,
-      end = this.selectionEnd;
-
-    // set textarea value to: text before caret + tab + text after caret
-    this.value = val.substring(0, start) + "\t" + val.substring(end);
-
-    // put caret at right position again
-    this.selectionStart = this.selectionEnd = start + 1;
-
-    // prevent the focus lose
-    return false;
+    Swal.fire({
+      title: "Where is the text?",
+      text: "Paste some code here and try again!",
+      type: "question"
+    });
   }
 }
 
