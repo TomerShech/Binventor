@@ -45,13 +45,13 @@ def delete_expired():
         for dt in _tuple:
             db.session.query(Binventordb).filter(dt < datetime.utcnow()).delete(synchronize_session=False)
 
-def get_recent_pastes():
+def get_all_pastes():
     return Binventordb.query.all()[::-1]
 
 @app.route("/")
 def index():
     delete_expired()
-    return render_template("index.html", is_index=True, needs_ta=True, recent_pastes=get_recent_pastes(), now=datetime.utcnow())
+    return render_template("index.html", is_index=True, needs_ta=True, all_pastes=get_all_pastes(), now=datetime.utcnow())
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
@@ -102,10 +102,10 @@ def contact():
         return redirect(url_for("contact"))
     return render_template("contact.html", title="Contact", form=form, is_footer=True)
 
-@app.route("/recent")
-def recent():
+@app.route("/all")
+def all():
     delete_expired()
-    return render_template("recent.html", title="Recent Pastes", recent_pastes=get_recent_pastes(), now=datetime.utcnow(), is_footer=True)
+    return render_template("all_pastes.html", title="Posted Pastes", all_pastes=get_all_pastes(), now=datetime.utcnow(), is_footer=True)
 
 @app.route("/signup")
 def signup():

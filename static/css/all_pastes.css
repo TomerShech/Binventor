@@ -40,6 +40,21 @@ table tbody tr:hover {
     background-color: #eeeeee;
 }
 
-h1 {
+.headers {
+  display: block;
+  text-align: center;
+}
+
+.headers h1, .headers h2 {
    color: aqua;
+   padding-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
 }
