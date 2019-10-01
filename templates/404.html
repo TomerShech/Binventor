@@ -1,16 +1,42 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
+<style>
+  #type {
+    color: white;
+    text-align: center;
+    background-color: black;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+  }
 
-{% block content %}
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/404.css') }}">
+  #type a {
+    text-decoration: underline;
+  }
+</style>
 
-  	<div class="c-404">
-		<div class="num-404">
-			<span>4</span>
-			<span>0</span>
-			<span>4</span>
-		</div>
-		<h1>OOPS! Page Not Found</h1>
-		<h2>What you were looking for is just not there.</h2>
-		<a href="{{ url_for('index') }}">Go back home</a>
-  	</div>
+<div id="type"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/typeit@6.0.3/dist/typeit.min.js"></script>
+<script>
+  new TypeIt("#type", {
+    strings: [
+      "OOPS! The page was not found.",
+      "Looks like what you were looking for is just not there...",
+      "If it's a paste, it was most likely expired..",
+      "If it's a user, they may have deleted their account.. :(",
+      "So as I see it, you have 2 options right now:",
+      "1. You can <a href='{{ url_for('index') }}'>go home</a>",
+      "2. You can continue staring at the beautiful blinking cursor",
+      "(I would've stayed to stare with you, but I gotta go!)",
+      "Sooo... I am leaving now, see you!",
+      "Bye."
+    ],
+    speed: 30,
+    breakLines: true
+  }).go();
+</script>
+
 {% endblock %}

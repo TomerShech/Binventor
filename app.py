@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import or_
 from flask_mail import Mail, Message
 from datetime import datetime, timedelta
-from uuid import uuid4
+from shortuuid import ShortUUID
 from config import Config
 from form import ContactForm, SignUpForm
 
@@ -21,6 +21,7 @@ con.config_mail()
 
 mail = Mail(app)
 
+
 db = SQLAlchemy(app)
 
 class Binventordb(db.Model):
@@ -36,14 +37,10 @@ class Binventordb(db.Model):
 
 
 def generate_id():
-    return str(uuid4().hex)[:8]
+    return ShortUUID().random(length=8)
 
 def delete_expired():
-    to_delete = db.session.query(Binventordb.delete_at).all()
-    print(to_delete)
-    for _tuple in to_delete:
-        for dt in _tuple:
-            db.session.query(Binventordb).filter(dt < datetime.utcnow()).delete(synchronize_session=False)
+    db.session.query(Binventordb).filter(datetime.utcnow() > Binventordb.delete_at).delete(synchronize_session=False)
 
 def get_all_pastes():
     return Binventordb.query.all()[::-1]
@@ -59,25 +56,27 @@ def submit():
         paste_body = request.form["paste_body"]
         paste_name = "nameless" if not request.form["paste_name"].strip() else request.form["paste_name"]
         random_uuid = generate_id()
-        expiration_time = request.form["expiration"]        
-        
+        expiration_time = request.form["expiration"]
+
         try:
             expiration_time = int(request.form["expiration"])
         except ValueError:
-            return "Lol you idiot it's not even an int"
+            return redirect(url_for("index"))
         
         if expiration_time not in (10, 60, 1440, 10080, 43800):
-            return "Yo mom's gay don't edit the fucking html"
+            return redirect(url_for("index"))
         
         delete_at = datetime.utcnow() + timedelta(minutes=expiration_time)
 
-        if not Binventordb.query.filter(Binventordb.random_uuid == random_uuid).count():
-            delete_expired()
-            data = Binventordb(pname=paste_name, pbody=paste_body, random_uuid=random_uuid, delete_at=delete_at)
-            db.session.add(data)
-            db.session.commit()
-            return redirect(url_for("paste", puuid=random_uuid))
-        return redirect(url_for("index"))
+        delete_expired()
+
+        if Binventordb.query.filter(Binventordb.random_uuid == random_uuid).count():
+            while random_uuid == generate_id():
+                random_uuid = generate_id()
+        data = Binventordb(pname=paste_name, pbody=paste_body, random_uuid=random_uuid, delete_at=delete_at)
+        db.session.add(data)
+        db.session.commit()
+        return redirect(url_for("paste", puuid=random_uuid))
 
 @app.route("/<puuid>", methods=["GET", "POST"])
 def paste(puuid):

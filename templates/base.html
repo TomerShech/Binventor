@@ -38,12 +38,17 @@
       </ul>
     </header>
     <main>
-      {% with msgs = get_flashed_messages(with_categories=true) %} {% if msgs %}
+      {% with msgs = get_flashed_messages(with_categories=true) %} 
+      {% if msgs %}
       {% for ctg, msg in msgs %}
       <div class="{{ ctg }}">
         {{ msg }}
       </div>
-      {% endfor %} {% endif %} {% endwith %} {% block content %}{% endblock %}
+      {% endfor %} 
+      {% endif %} 
+      {% endwith %}
+
+      {% block content %}{% endblock %}
     </main>
     {% if is_footer %}
     <footer>
@@ -59,7 +64,7 @@
         ></a>
         <span
           class="icon-discord"
-          title="Add me on Discord: Quench My Desire#4939"
+          onclick="Swal.fire('<a style=\'color: #111111;\' target=\'_blank\' rel=\'noopener noreferrer\' href=\'https://discord.gg/2HsDr7X\'>Click <span style=\'color: #209bee;\'>HERE</span> to join our programming Discord server!</a>')"
         ></span>
       </div>
     </footer>

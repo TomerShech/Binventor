@@ -24,6 +24,10 @@
     window.getSelection().addRange(range); // select text
     document.execCommand("copy"); // copy
     window.getSelection().removeAllRanges(); // deselect
+    Swal.fire({
+      title: "Link has been copied",
+      type: "success"
+    });
   }
 </script>
 
