@@ -229,7 +229,7 @@ footer div:nth-child(2) {
   padding: 0 0.5rem;
 }
 
-footer div:nth-child(2) span:first-child {
+footer div:nth-child(2) i:first-child {
   color: #e25555;
   animation: beat 1s ease infinite;
   display: inline-block;
@@ -240,7 +240,7 @@ footer div:nth-child(3) {
   font-size: 1.4rem;
 }
 
-footer div:nth-child(3) span:nth-child(2) {
+footer div:nth-child(3) i:nth-child(2) {
   cursor: pointer;
 }
 

@@ -16,7 +16,7 @@ app.jinja_env.globals.update(replace=datetime.replace)
 con = Config(app)
 
 app.config.from_object(Config)
-con.config_db("dev")
+con.config_db()
 con.config_mail()
 
 mail = Mail(app)
@@ -97,7 +97,7 @@ def contact():
         msg_body = f"<b>Name:</b> {person_name}<br /><b>Email:</b> {form.email.data}<br /><b>Message:</b> {form.message.data}"
         msg = Message(f"New email from {person_name}", recipients=[environ.get("GMAIL_USERNAME")], html=msg_body)
         mail.send(msg)
-        flash(Markup("<span class=\"icon-checkmark\"></span> Your email has been sent successfully! Thank you for contacting me"), "msg success-msg")
+        flash(Markup("<i class=\"fas fa-check\"></i> Your email has been sent successfully! Thank you for contacting me"), "msg success-msg")
         return redirect(url_for("contact"))
     return render_template("contact.html", title="Contact", form=form, is_footer=True)
 
