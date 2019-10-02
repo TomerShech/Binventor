@@ -1,6 +1,6 @@
-# [Binventor](http://www.binventor.com)
+# [Binventor](http://binventor.com/)
 
-Binventor is a text pasting web app that aims for simple & easy sharing of code snippets.
+**Binventor** is a text pasting web app that aims for simple & easy sharing of code snippets.
 I started making it as a personal project for myself, in order to improve my web skills.
 Then, I got into the Computer Science class at my high school, so I chose to put it online for my class to use.
 If you are some random internet person who deliberately/accidentally got here, don't worry, my auto-non-cs-class-person-detector will find & eliminate you!
@@ -16,7 +16,7 @@ If you are some random internet person who deliberately/accidentally got here, d
 - Use the keyboard shortcuts you're already familiar with, or, you know.. the regular buttons.
 
 
-If using a computer, you can use CTRL + S to save & get a shareable link, no need to use the button!
+If using a computer, you can use _**CTRL + S**_ to save & get a shareable link, no need to use the button!
 
 
 If you want to help me by contributing to this project, feel free to create a new pull request.
