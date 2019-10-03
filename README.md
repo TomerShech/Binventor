@@ -1,4 +1,4 @@
-# [Binventor](http://binventor.com/)
+# [Binventor](https://binventor.com/)
 
 **Binventor** is a text pasting web app that aims for simple & easy sharing of code snippets.
 I started making it as a personal project for myself, in order to improve my web skills.
