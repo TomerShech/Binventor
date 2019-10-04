@@ -8,7 +8,11 @@
   <button onclick="copyToClipboard();"><i class="far fa-clone"></i></button>
 </div>
 
+{% if markup %}
+<pre><code class="{{ markup }}">{{ pbody }}</code></pre>
+{% else %}
 <pre><code>{{ pbody }}</code></pre>
+{% endif %}
 
 <script>
   const a = document.getElementById("plink");

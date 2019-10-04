@@ -1,6 +1,71 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
-<h1>About</h1>
-<p>Binventor is a web app similar to pastebin, that lets you easily share your code snippets with others</p>
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+  #wrapper {
+    text-align: center;
+    padding: 1.5rem;
+    color: whitesmoke;
+  }
+
+  h1, h2 {
+      margin: 0.5rem 0;
+  }
+
+  h1 a {
+    text-decoration: underline;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  #wrapper ul li {
+    padding: 1rem;
+  }
+</style>
+
+<div id="wrapper">
+  <h1>
+    <a href="https://binventor.com/">Binventor</a>
+  </h1>
+  <p>
+    <strong>Binventor</strong> is a text pasting web app that aims for simple
+    &amp; easy sharing of code snippets. I started making it as a personal
+    project for myself, in order to improve my web skills. Then, I got into the
+    Computer Science class at my high school, so I chose to put it online for my
+    class to use. If you are some random internet person who
+    deliberately/accidentally got here, don't worry, my
+    auto-non-cs-class-person-detector will find &amp; eliminate you!
+  </p>
+  <h2>Features:</h2>
+  <ul>
+    <li>
+      Manually choosing your code's programming language? no need! Binventor
+      will automatically highlight it for you. (Thanks highlight.js!)
+    </li>
+    <li>
+      No more ugliness or unresponsive design! (Forgive me, Pastebin), Binventor
+      is built with modern standards in mind.
+    </li>
+    <li>
+      Your pastes will be deleted ONLY when you want them to. Select the
+      expiration time you think is best.
+    </li>
+    <li>
+      Use the keyboard shortcuts you're already familiar with, or, you know..
+      the regular buttons.
+    </li>
+  </ul>
+  <p>
+    If using a computer, you can use <em><strong>CTRL + S</strong></em> to save
+    &amp; get a shareable link, no need to use the button!
+  </p>
+  <p>
+    If you want to help me by contributing to this project, feel free to create
+    a new pull request.
+  </p>
+  <p>Thank you all for using my website, Tomer.</p>
+</div>
 {% endblock %}

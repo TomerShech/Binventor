@@ -1,4 +1,3 @@
-from os import environ
 from flask import Flask, render_template, request, redirect, url_for, flash, Markup
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import or_
@@ -7,7 +6,7 @@ from datetime import datetime, timedelta
 from shortuuid import ShortUUID
 from config import Config
 from form import ContactForm, SignUpForm
-
+from by_extension import should_use_ext, get_markup
 
 app = Flask(__name__)
 
@@ -30,11 +29,9 @@ class Binventordb(db.Model):
     pid = db.Column(db.Integer, primary_key=True) # paste's id
     pname = db.Column(db.String(100), nullable=False) # paste's name (title)
     pbody = db.Column(db.String(40000), nullable=False) # paste's body (actual pasted code)
-    # pexr = db.Column(db.Integer, nullable=False) # paste's expiration time (in minutes) (doesn't go into the db)
     random_uuid = db.Column(db.String(8), nullable=False) # paste's url id
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow) # paste creation UTC date
     delete_at = db.Column(db.DateTime, nullable=False)
-
 
 def generate_id():
     return ShortUUID().random(length=8)
@@ -69,7 +66,6 @@ def submit():
         delete_at = datetime.utcnow() + timedelta(minutes=expiration_time)
 
         delete_expired()
-
         if Binventordb.query.filter(Binventordb.random_uuid == random_uuid).count():
             while random_uuid == generate_id():
                 random_uuid = generate_id()
@@ -77,11 +73,13 @@ def submit():
         db.session.add(data)
         db.session.commit()
         return redirect(url_for("paste", puuid=random_uuid))
-
+        
 @app.route("/<puuid>", methods=["GET", "POST"])
 def paste(puuid):
     delete_expired()
     c = Binventordb.query.filter_by(random_uuid=puuid).first_or_404()
+    if should_use_ext(c.pname, c.pbody):
+        return render_template("paste.html", pbody=c.pbody, markup=get_markup(c.pname.split(".")[1]), title=c.pname, is_footer=True)
     return render_template("paste.html", pbody=c.pbody, title=c.pname, is_footer=True)
 
 @app.route("/about")
@@ -95,9 +93,9 @@ def contact():
 
     if form.validate_on_submit():
         msg_body = f"<b>Name:</b> {person_name}<br /><b>Email:</b> {form.email.data}<br /><b>Message:</b> {form.message.data}"
-        msg = Message(f"New email from {person_name}", recipients=[environ.get("GMAIL_USERNAME")], html=msg_body)
+        msg = Message(f"New email from {person_name}", recipients=[Config.GMAIL_USERNAME], html=msg_body)
         mail.send(msg)
-        flash(Markup("<i class=\"fas fa-check\"></i> Your email has been sent successfully! Thank you for contacting me"), "msg success-msg")
+        flash(Markup('<i class="icon-ok"></i> Your email has been sent successfully! Thank you for contacting me'), "msg success-msg")
         return redirect(url_for("contact"))
     return render_template("contact.html", title="Contact", form=form, is_footer=True)
 

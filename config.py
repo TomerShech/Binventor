@@ -5,12 +5,13 @@ with open("/etc/config.json") as config_file:
 
 class Config:
     SECRET_KEY = config.get("SECRET_KEY")
+    GMAIL_USERNAME = config.get("GMAIL_USERNAME")
 
     def __init__(self, app):
        self.app = app
 
     def config_db(self):
-        self.app.config["SQLALCHEMY_DATABASE_URI"] = config.get("DB_PROD_URI")
+        self.app.config["SQLALCHEMY_DATABASE_URI"] = config.get("DB_DEV_URI")
         self.app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     def config_mail(self):

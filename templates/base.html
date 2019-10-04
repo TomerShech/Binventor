@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/png" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontello.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/tomorrow-night-eighties.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
-    <script src="https://kit.fontawesome.com/4c70bed31a.js" crossorigin="anonymous"></script>
     {% if title %}
     <title>{{ title | safe }} | Binventor</title>
     {% else %}
@@ -17,7 +17,7 @@
   <body>
     <header>
       <a href="{{ url_for('index') }}" class="logo"
-        ><i class="far fa-clone"></i>&nbsp;Binventor</a
+        ><i class="icon-clone"></i>&nbsp;Binventor</a
       >
       <input class="menu-btn" type="checkbox" id="menu-btn" />
       <label class="menu-icon" for="menu-btn"
@@ -32,7 +32,7 @@
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/TomerShech/binventor/pulls"
-            >Contribute&ensp;<i class="fas fa-external-link-alt"></i>
+            >Contribute&ensp;<i class="icon-link-ext"></i>
           </a>
         </li>
       </ul>
@@ -44,25 +44,24 @@
       <div class="{{ ctg }}">
         {{ msg }}
       </div>
-      {% endfor %} 
-      {% endif %} 
+      {% endfor %}
+      {% endif %}
       {% endwith %}
-
       {% block content %}{% endblock %}
     </main>
     {% if is_footer %}
     <footer>
       <div>&copy; 2019 <a href="{{ url_for('index') }}">Binventor.com</a></div>
-      <div>Made with <i class="fas fa-heart"></i> by Tomer</div>
+      <div>Made with <i class="icon-heart"></i> by Tomer</div>
       <div>
         <a
           title="Follow me on GitHub!"
           target="_blank"
           rel="noopener noreferrer"
           href="https://github.com/TomerShech/"
-          ><i class="fab fa-github"></i></a>
+          ><i class="icon-github-circled"></i></a>
         <i
-          class="fab fa-discord"
+          class="icon-group"
           onclick="Swal.fire('<a style=\'color: #111111;\' target=\'_blank\' rel=\'noopener noreferrer\' href=\'https://discord.gg/2HsDr7X\'>Click <span style=\'color: #209bee;\'>HERE</span> to join our programming Discord server!</a>')"
         ></i>
       </div>
