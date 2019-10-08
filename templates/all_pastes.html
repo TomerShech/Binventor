@@ -1,7 +1,8 @@
-{% extends "base.html" %} 
-
-{% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/all_pastes.css') }}" />
+{% extends "base.html" %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/all_pastes.css') }}"
+/>
 {% if all_pastes %}
 <table>
   <thead>
@@ -12,8 +13,8 @@
     </tr>
   </thead>
   <tbody>
-    {% for p in all_pastes %}
-    {% set ago, url = now - p.created_at, request.url_root + p.random_uuid %}
+    {% for p in all_pastes %} {% set ago, url = now - p.created_at,
+    request.url_root + p.random_uuid %}
     <tr>
       <td>
         <a href="{{ url }}">{{ p.pname }}</a>
@@ -24,10 +25,10 @@
       <td>{{ ago.seconds // 60 }} min ago</td>
       {% elif ago.seconds > 3540 and ago.seconds <= 86400 %}
       <td>{{ ago.seconds // 3600 }} hour(s) ago</td>
-      {% elif ago.seconds > 86400 and ago.seconds <= 2678000 %}
-      <td>{{ ago.seconds // 86400 }} days(s) ago</td>
       {% endif %}
-      <td>{{ p.delete_at.replace(microsecond=0) - now.replace(microsecond=0) }}</td>
+      <td>
+        {{ p.delete_at.replace(microsecond=0) - now.replace(microsecond=0) }}
+      </td>
     </tr>
     {% endfor %}
   </tbody>
@@ -37,6 +38,5 @@
 <div class="headers">
   <h1>No current posted pastes :(</h1>
   <h2>Create one yourself, or come back later</h2>
+  {% endif %} {% endblock %}
 </div>
-{% endif %} 
-{% endblock %}

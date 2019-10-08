@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" 
+    integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU=" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fontello.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/tomorrow-night-eighties.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}" />
@@ -60,10 +62,7 @@
           rel="noopener noreferrer"
           href="https://github.com/TomerShech/"
           ><i class="icon-github-circled"></i></a>
-        <i
-          class="icon-group"
-          onclick="Swal.fire('<a style=\'color: #111111;\' target=\'_blank\' rel=\'noopener noreferrer\' href=\'https://discord.gg/2HsDr7X\'>Click <span style=\'color: #209bee;\'>HERE</span> to join our programming Discord server!</a>')"
-        ></i>
+        <i class="icon-group" onclick="Toast.fire('<a style=\'color: #111111\' target=\'_blank\' rel=\'noopener noreferrer\' href=\'https://discord.gg/Za9mw5z\'>Click <span style=\'color: #209bee;\'>HERE</span> to join our Discord programming server!</a>')"></i>
       </div>
     </footer>
     {% endif %}
@@ -72,6 +71,18 @@
       hljs.initHighlightingOnLoad();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.17.6/dist/sweetalert2.all.min.js"></script>
+    <script>
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 3000,
+        animation: false,
+        customClass: {
+          popup: "animated bounceIn"
+        }
+      });
+    </script>
     {% if is_index %}
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
     {% endif %}

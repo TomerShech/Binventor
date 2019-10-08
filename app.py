@@ -5,8 +5,8 @@ from flask_mail import Mail, Message
 from datetime import datetime, timedelta
 from shortuuid import ShortUUID
 from config import Config
-from form import ContactForm, SignUpForm
-from by_extension import should_use_ext, get_markup
+from form import ContactForm
+from by_extension import should_use_ext
 
 app = Flask(__name__)
 
@@ -40,7 +40,10 @@ def delete_expired():
     db.session.query(Binventordb).filter(datetime.utcnow() > Binventordb.delete_at).delete(synchronize_session=False)
 
 def get_all_pastes():
-    return Binventordb.query.all()[::-1]
+    future = lambda mins: datetime.utcnow() + timedelta(minutes=mins)
+    return Binventordb.query.filter((Binventordb.delete_at < future(10)) | (Binventordb.delete_at < future(60))).all()[::-1]
+
+print(get_all_pastes())
 
 @app.route("/")
 def index():
@@ -79,7 +82,7 @@ def paste(puuid):
     delete_expired()
     c = Binventordb.query.filter_by(random_uuid=puuid).first_or_404()
     if should_use_ext(c.pname, c.pbody):
-        return render_template("paste.html", pbody=c.pbody, markup=get_markup(c.pname.split(".")[1]), title=c.pname, is_footer=True)
+        return render_template("paste.html", pbody=c.pbody, markup=c.pname.split(".")[1], title=c.pname, is_footer=True)
     return render_template("paste.html", pbody=c.pbody, title=c.pname, is_footer=True)
 
 @app.route("/about")
@@ -103,14 +106,6 @@ def contact():
 def all():
     delete_expired()
     return render_template("all_pastes.html", title="Posted Pastes", all_pastes=get_all_pastes(), now=datetime.utcnow(), is_footer=True)
-
-@app.route("/signup")
-def signup():
-    form = SignUpForm()
-
-    if form.validate_on_submit():
-        return redirect(url_for("index"))
-    return render_template("signup.html", title="Sign Up", form=form, is_footer=True)
 
 @app.errorhandler(404)
 def page_not_found(e):

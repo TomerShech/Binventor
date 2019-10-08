@@ -3,17 +3,6 @@ const form = document.querySelector("form");
 const submitBtn = document.getElementById("submit_btn");
 const MAX_ALLOWED_CHARS = 40000;
 
-const Toast = Swal.mixin({
-  toast: true,
-  position: "top",
-  showConfirmButton: false,
-  timer: 2000,
-  animation: false,
-  customClass: {
-    popup: "animated bounceIn"
-  }
-});
-
 function getOS() {
   let platform = window.navigator.platform,
     macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"],
@@ -30,9 +19,7 @@ function getOS() {
 function submitWithCtrlS(e) {
   const len = ta.value.length;
 
-  if (
-    getOS() === "MacOS" ? e.metaKey : e.ctrlKey && e.key.toLowerCase() === "s"
-  ) {
+  if (getOS() === "MacOS" ? e.metaKey : e.ctrlKey && e.key.toLowerCase() === "s") {
     e.preventDefault(); // prevent saving of website as html file
 
     if (ta.value !== null && ta.value.trim() !== "" && len <= MAX_ALLOWED_CHARS)
