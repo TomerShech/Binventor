@@ -43,8 +43,6 @@ def get_all_pastes():
     future = lambda mins: datetime.utcnow() + timedelta(minutes=mins)
     return Binventordb.query.filter((Binventordb.delete_at < future(10)) | (Binventordb.delete_at < future(60))).all()[::-1]
 
-print(get_all_pastes())
-
 @app.route("/")
 def index():
     delete_expired()
