@@ -9,6 +9,10 @@ If you are some random internet person who deliberately/accidentally got here, d
 
 - Manually choosing your code's programming language? no need! Binventor will automatically highlight it for you. (Thanks highlight.js!)
 
+- **Protip:** name your paste with the extension of its language to force the highlighting of that language.
+e.g. A paste name *"script.ts"* will make sure your code is highlighted as TypeScript and not as JavaScript!
+
+
 - No more ugliness or unresponsive design! (Forgive me, Pastebin), Binventor is built with modern standards in mind.
 
 - Your pastes will be deleted ONLY when you want them to. Select the expiration time you think is best.
