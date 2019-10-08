@@ -1,14 +1,17 @@
 main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 
 table {
-    border-collapse: collapse;
-    text-align: left;
-    width: 100%;
+  table-layout: fixed;
+  word-break: break-word;
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
 }
 
 table thead tr {
@@ -24,20 +27,21 @@ table a {
 }
 
 table a:hover {
-    color: #9884fc;
+  color: #9884fc;
 }
 
-table th, table td {
+table th,
+table td {
   padding: 0.6rem;
 }
 
 table tbody tr {
-    background-color: white;
-    border-bottom: 1px solid #cacaca;
+  background-color: white;
+  border-bottom: 1px solid #cacaca;
 }
 
 table tbody tr:hover {
-    background-color: #eeeeee;
+  background-color: #eeeeee;
 }
 
 .headers {
@@ -45,9 +49,9 @@ table tbody tr:hover {
   text-align: center;
 }
 
-.headers h1, .headers h2 {
-   color: #fe385f;
-   padding-bottom: 1rem;
+h1, h2, h3 {
+  color: #9884fc;
+  padding-bottom: 1rem;
 }
 
 @media (max-width: 768px) {

@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, Markup
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import or_
 from flask_mail import Mail, Message
 from datetime import datetime, timedelta
 from shortuuid import ShortUUID
@@ -9,18 +8,14 @@ from form import ContactForm
 from by_extension import should_use_ext
 
 app = Flask(__name__)
-
 app.jinja_env.globals.update(replace=datetime.replace)
 
 con = Config(app)
-
 app.config.from_object(Config)
 con.config_db()
 con.config_mail()
 
 mail = Mail(app)
-
-
 db = SQLAlchemy(app)
 
 class Binventordb(db.Model):
@@ -39,14 +34,13 @@ def generate_id():
 def delete_expired():
     db.session.query(Binventordb).filter(datetime.utcnow() > Binventordb.delete_at).delete(synchronize_session=False)
 
-def get_all_pastes():
+def get_recent_pastes():
     future = lambda mins: datetime.utcnow() + timedelta(minutes=mins)
-    return Binventordb.query.filter((Binventordb.delete_at < future(10)) | (Binventordb.delete_at < future(60))).all()[::-1]
+    return Binventordb.query.filter((Binventordb.delete_at < future(10)) | (Binventordb.delete_at < future(60)) | (Binventordb.delete_at < future(1440))).all()[::-1]
 
 @app.route("/")
 def index():
-    delete_expired()
-    return render_template("index.html", is_index=True, needs_ta=True, all_pastes=get_all_pastes(), now=datetime.utcnow())
+    return render_template("index.html", is_index=True, needs_ta=True)
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
@@ -100,10 +94,10 @@ def contact():
         return redirect(url_for("contact"))
     return render_template("contact.html", title="Contact", form=form, is_footer=True)
 
-@app.route("/all")
+@app.route("/recent")
 def all():
     delete_expired()
-    return render_template("all_pastes.html", title="Posted Pastes", all_pastes=get_all_pastes(), now=datetime.utcnow(), is_footer=True)
+    return render_template("recent_pastes.html", title="Latest Pastes", recent_pastes=get_recent_pastes(), now=datetime.utcnow(), is_footer=True)
 
 @app.errorhandler(404)
 def page_not_found(e):

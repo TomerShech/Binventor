@@ -3,7 +3,6 @@ from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import InputRequired, Email, Length
 
-
 class ContactForm(FlaskForm):
     name = StringField("Name", validators=[InputRequired("Your name is required!")], render_kw={"placeholder": "Your name here..."})
     email = EmailField("Email", validators=[InputRequired("Your email is required!"), Email("Please enter a valid email address")], render_kw={"placeholder": "Your email here..."})

@@ -1,8 +1,5 @@
 {% extends "base.html" %} {% block content %}
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/index.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
 
 <form action="{{ url_for('submit') }}" method="post">
   <textarea
@@ -20,11 +17,11 @@
     maxlength="100"
     />
     <select name="expiration">
-      <option value="10">Expiration (default 10 mins)</option>
-      <option value="60">1 Hour</option>
-      <option value="1440">1 Day</option>
-      <option value="10080">1 Week</option>
-      <option value="43800">1 Month</option>
+      <option value="10">Expire in 10 Minutes</option>
+      <option selected value="60">Expire in 1 Hour</option>
+      <option value="1440">Expire in 1 Day</option>
+      <option value="10080">Expire in 1 Week</option>
+      <option value="43800">Expire in 1 Month</option>
     </select>
     <input id="submit_btn" type="submit" value="Paste!" />
   </div>

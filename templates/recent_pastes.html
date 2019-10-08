@@ -1,9 +1,10 @@
 {% extends "base.html" %} {% block content %}
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/all_pastes.css') }}"
-/>
-{% if all_pastes %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/recent_pastes.css') }}" />
+
+<h1>Latest created pastes</h1>
+<h3>(10 Minutes, 1 Hour & 1 Day ago)</h3>
+
+{% if recent_pastes %}
 <table>
   <thead>
     <tr>
@@ -13,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for p in all_pastes %} {% set ago, url = now - p.created_at,
+    {% for p in recent_pastes %} {% set ago, url = now - p.created_at,
     request.url_root + p.random_uuid %}
     <tr>
       <td>
