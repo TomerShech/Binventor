@@ -54,10 +54,10 @@ def submit():
             expiration_time = int(request.form["expiration"])
         except ValueError:
             return redirect(url_for("index"))
-        
+
         if expiration_time not in (10, 60, 1440, 10080, 43800):
             return redirect(url_for("index"))
-        
+
         delete_at = datetime.utcnow() + timedelta(minutes=expiration_time)
 
         delete_expired()
@@ -68,17 +68,17 @@ def submit():
         db.session.add(data)
         db.session.commit()
         return redirect(url_for("paste", puuid=random_uuid))
-        
+
 @app.route("/<puuid>", methods=["GET", "POST"])
 def paste(puuid):
     delete_expired()
     c = Binventordb.query.filter_by(random_uuid=puuid).first_or_404()
-    ext = c.pname.split(".")[1]
     if should_use_ext(c.pname, c.pbody):
+	ext = c.pname.split(".")[1]
         if ext == "txt":
             return render_template("paste.html", pbody=c.pbody, markup="plaintext", title=c.pname, is_footer=True)
-        else:
-            return render_template("paste.html", pbody=c.pbody, markup=ext, title=c.pname, is_footer=True)
+	else:
+	    return render_template("paste.html", pbody=c.pbody, markup=ext, title=c.pname, is_footer=True)
     return render_template("paste.html", pbody=c.pbody, title=c.pname, is_footer=True)
 
 @app.route("/about")
