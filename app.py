@@ -73,8 +73,12 @@ def submit():
 def paste(puuid):
     delete_expired()
     c = Binventordb.query.filter_by(random_uuid=puuid).first_or_404()
+    ext = c.pname.split(".")[1]
     if should_use_ext(c.pname, c.pbody):
-        return render_template("paste.html", pbody=c.pbody, markup=c.pname.split(".")[1], title=c.pname, is_footer=True)
+        if ext == "txt":
+            return render_template("paste.html", pbody=c.pbody, markup="plaintext", title=c.pname, is_footer=True)
+        else:
+            return render_template("paste.html", pbody=c.pbody, markup=ext, title=c.pname, is_footer=True)
     return render_template("paste.html", pbody=c.pbody, title=c.pname, is_footer=True)
 
 @app.route("/about")

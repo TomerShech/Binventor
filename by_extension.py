@@ -3,7 +3,7 @@ exts = [
     "java", "js", "json", "html", "css", "md", "cs",
     "php", "rs", "sh", "bash", "ts", "coffee",
     "lisp", "lua", "nginx", "ps", "powershell", "vim", "sql", "scss",
-    "r", "cmake", "makefile", "mk"
+    "r", "cmake", "makefile", "mk", "txt"
 ]
 
 
