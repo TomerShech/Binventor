@@ -11,4 +11,3 @@ def should_use_ext(name, body):
         ext = name.split(".")[1]
         if ext in exts and name.endswith(f".{ext}"):
             return True
-
