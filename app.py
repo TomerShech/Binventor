@@ -120,6 +120,11 @@ def all():
     return render_template("recent_pastes.html", title="Latest Pastes", recent_pastes=get_recent_pastes(), now=datetime.utcnow(), is_footer=True)
 
 
+# @app.route("/editor")
+# def editor():
+#     return render_template("editor.html", title="Online Editor", needs_ta=True)
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html", title="404 Not Found"), 404
