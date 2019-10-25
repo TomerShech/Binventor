@@ -28,9 +28,8 @@ form .btns {
   border-radius: 0.5rem;
 }
 
-form .btns input[type="text"],
-form .btns select,
-form .btns input[type="submit"] {
+form .btns input,
+form .btns select {
   margin: 0 0.5rem;
   border-radius: 0.5rem;
   outline: none;
@@ -59,8 +58,7 @@ form .btns input[type="submit"]:hover {
     grid-auto-flow: row;
   }
   form .btns select,
-  form .btns input[type="text"],
-  form .btns input[type="submit"] {
+  form .btns input {
     border-radius: 0;
   }
 }

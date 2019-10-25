@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}" />
@@ -16,7 +16,7 @@
 </div>
 
 <div class="errs">
-  {% if form.name.errors %} 
+  {% if form.name.errors %}
   {% for error in form.name.errors %}
   <span class="msg error-msg">{{ error }}</span>
   {% endfor %}

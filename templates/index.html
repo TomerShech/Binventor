@@ -11,20 +11,35 @@
   ></textarea>
   <div class="btns">
     <input
+    id="paste_name"
     type="text"
     name="paste_name"
     placeholder="Paste name (optional)"
     maxlength="100"
     />
-    <select name="expiration">
+    <select name="expiration" id="exp">
       <option value="10">Expire in 10 Minutes</option>
-      <option selected value="60">Expire in 1 Hour</option>
-      <option value="1440">Expire in 1 Day</option>
+      <option value="60">Expire in 1 Hour</option>
+      <option selected value="1440">Expire in 1 Day</option>
       <option value="10080">Expire in 1 Week</option>
       <option value="43800">Expire in 1 Month</option>
     </select>
+    <input id="info_help" type="password" name="paste_pass" placeholder="Password (hover for info)" />
     <input id="submit_btn" type="submit" value="Paste!" />
   </div>
 </form>
 
+<script src="https://unpkg.com/popper.js@1"></script>
+<script src="https://unpkg.com/tippy.js@5"></script>
+<script>
+  tippy('#paste_name', {
+    content: "Protip: name your paste with the extension of its language to force highlighting! 'script.ts' will make sure it's TypeScript and not JS!"
+  });
+  tippy('#exp', {
+    content: "Select the expiration time that fits best!"
+  });
+  tippy('#info_help', {
+    content: "Provide a password here if you want your paste to be private. Otherwise, just leave blank."
+  });
+</script>
 {% endblock %}
