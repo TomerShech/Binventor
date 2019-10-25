@@ -4,7 +4,7 @@ from flask_mail import Mail, Message
 from datetime import datetime, timedelta
 from shortuuid import ShortUUID
 from src.config import Config
-from src.form import ContactForm, PasteForm
+from src.form import ContactForm
 from src.by_extension import should_use_ext
 
 
@@ -23,7 +23,6 @@ class Binventordb(db.Model):
     __tablename__ = "pastes"
     pid = db.Column(db.Integer, primary_key=True)  # paste's id
     pname = db.Column(db.String(100), nullable=False)  # paste's name (title)
-    ppass = db.Column(db.String(16), nullable=False) # paste's optional protection password
     pbody = db.Column(db.String(40000), nullable=False) # paste's body (actual pasted code)
     random_uuid = db.Column(db.String(8), nullable=False)  # paste's url id
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)  # paste creation UTC date
@@ -36,7 +35,6 @@ def delete_expired():
     db.session.query(Binventordb).filter(datetime.utcnow() > Binventordb.delete_at).delete(synchronize_session=False)
 
 def get_recent_pastes():
-    # def future(mins): return datetime.utcnow() + timedelta(minutes=mins)
     future = lambda mins: datetime.utcnow() + timedelta(minutes=mins)
     return Binventordb.query.filter((Binventordb.delete_at < future(10)) | (Binventordb.delete_at < future(60)) | (Binventordb.delete_at < future(1440))).all()[::-1]
 
@@ -49,7 +47,6 @@ def submit():
     if request.method == "POST":
         paste_body = request.form["paste_body"]
         paste_name = "nameless" if not request.form["paste_name"].strip() else request.form["paste_name"]
-        paste_pass = False if not request.form["paste_pass"].strip() else request.form["paste_pass"]
         random_uuid = generate_id()
         expiration_time = request.form["expiration"]
 
@@ -67,7 +64,7 @@ def submit():
         if Binventordb.query.filter(Binventordb.random_uuid == random_uuid).count():
             while random_uuid == generate_id():
                 random_uuid = generate_id()
-        data = Binventordb(pname=paste_name, pbody=paste_body, ppass=paste_pass, random_uuid=random_uuid, delete_at=delete_at)
+        data = Binventordb(pname=paste_name, pbody=paste_body, random_uuid=random_uuid, delete_at=delete_at)
         db.session.add(data)
         db.session.commit()
         return redirect(url_for("paste", puuid=random_uuid))

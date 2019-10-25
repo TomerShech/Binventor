@@ -1,5 +1,8 @@
 __pycache__/
 .vscode/
-db.db
+*.db
 venv/
+env/
 *.lock
+Pipfile
+config.json
