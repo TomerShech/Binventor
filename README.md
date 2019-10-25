@@ -1,3 +1,5 @@
+## Binventor is unhosted and thus unavailable for now. The hosting company I used (won't name names), was simply bad. I may bring it up again in the future.  Sorry for the inconvenience.
+
 # [Binventor](https://binventor.com/)
 
 **Binventor** is a text pasting web app that aims for simple & easy sharing of code snippets.
