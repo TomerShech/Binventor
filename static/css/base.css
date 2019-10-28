@@ -224,6 +224,17 @@ footer div {
   text-align: center;
 }
 
+footer div:nth-child(2) a {
+  color: white;
+  background-color: #111111;
+  padding: 0.3rem;
+  border-radius: 5px;
+}
+
+footer div:nth-child(2) a:hover {
+  background-color: #161616;
+}
+
 footer div:nth-child(2) {
   font-size: 1rem;
   padding: 0 0.5rem;

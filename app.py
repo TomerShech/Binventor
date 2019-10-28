@@ -35,8 +35,8 @@ def delete_expired():
     db.session.query(Binventordb).filter(datetime.utcnow() > Binventordb.delete_at).delete(synchronize_session=False)
 
 def get_recent_pastes():
-    future = lambda mins: datetime.utcnow() + timedelta(minutes=mins)
-    return Binventordb.query.filter((Binventordb.delete_at < future(10)) | (Binventordb.delete_at < future(60)) | (Binventordb.delete_at < future(1440))).all()[::-1]
+    # future = lambda mins: datetime.utcnow() + timedelta(minutes=mins)
+    return Binventordb.query.filter(Binventordb.delete_at).all()[::-1]
 
 @app.route("/")
 def index():
@@ -46,7 +46,7 @@ def index():
 def submit():
     if request.method == "POST":
         paste_body = request.form["paste_body"]
-        paste_name = "nameless" if not request.form["paste_name"].strip() else request.form["paste_name"]
+        paste_name = "Nameless" if not request.form["paste_name"].strip() else request.form["paste_name"]
         random_uuid = generate_id()
         expiration_time = request.form["expiration"]
 
