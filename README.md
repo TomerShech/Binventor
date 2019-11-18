@@ -7,6 +7,25 @@ I started making it as a personal project for myself, in order to improve my web
 Then, I got into the Computer Science class at my high school, so I chose to put it online for my class to use.
 If you are some random internet person who deliberately/accidentally got here, don't worry, my auto-non-cs-class-person-detector will find & eliminate you!
 
+## Build and run locally (Linux Mac OS)
+#### I will be very happy if someone can contribute and add Windows instructions as well! (I'm not a Windows user..)
+
+Tested with Python 3.7 although any python 3+ should work.
+
+It's recommended to use the Pipenv virtual environment instead of raw pip as it makes it a lot more easier to build, run and maintain. (just run `pipenv install` to install all necessary modules from `Pipfile`).
+
+- Clone the repo (or download ZIP and extract if no Git): `git clone https://github.com/TomerShech/Binventor.git`
+- `cd Binventor`
+- `pip3 install -r requirements.txt` (on Windows it may be just `pip`)
+- Install sqlite3, open a Python 3 shell and run:
+```py
+from app import app
+app.create_all()
+exit()
+```
+This will create the database with the `pastes` table.
+- Make sure `run.sh` has correct premissions: `chmod +x run.sh` and then `./run.sh`
+
 ## Features:
 
 - Manually choosing your code's programming language? no need! Binventor will automatically highlight it for you. (Thanks highlight.js!)

@@ -2,6 +2,5 @@ __pycache__/
 .vscode/
 env/
 *.db
-*.lock
-*.json
+config.json
 credentials
