@@ -19,8 +19,8 @@ It's recommended to use the Pipenv virtual environment instead of raw pip as it 
 - `pip3 install -r requirements.txt` (on Windows it may be just `pip`)
 - Install sqlite3, open a Python 3 shell and run:
 ```py
-from app import app
-app.create_all()
+from app import db
+db.create_all()
 exit()
 ```
 This will create the database with the `pastes` table.
