@@ -7,7 +7,7 @@ I started making it as a personal project for myself, in order to improve my web
 Then, I got into the Computer Science class at my high school, so I chose to put it online for my class to use.
 If you are some random internet person who deliberately/accidentally got here, don't worry, my auto-non-cs-class-person-detector will find & eliminate you!
 
-## Build and run locally (Linux Mac OS)
+## Build and run locally (Linux & Mac OS)
 #### I will be very happy if someone can contribute and add Windows instructions as well! (I'm not a Windows user..)
 
 Tested with Python 3.7 although any python 3+ should work.
